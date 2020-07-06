@@ -8,13 +8,6 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	
-	<typeAliases>
-		<!-- 别名扫描，name:包的路径 -->
-		<package name="com.ncu.zte.beans"/>
-	</typeAliases>
 	
-	<!-- 映射文件 -->
-	<mappers>
-		<mapper resource="mybatis/mapper/UserMapper.xml"/>
-	</mappers>
+
 </configuration>

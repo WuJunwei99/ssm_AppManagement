@@ -1,5 +1,7 @@
 package com.ncu.zte.mapper;
 
+import java.util.List;
+
 import com.ncu.zte.beans.User;
 
 public interface UserMapper {
@@ -10,5 +12,9 @@ public interface UserMapper {
      * @return
      */
     public User queryUserById(Long id);
+
+	public Long queryTotal();
+
+	public List<User> queryUserAll();
     
 }
