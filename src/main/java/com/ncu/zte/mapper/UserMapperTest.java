@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.ncu.zte.beans.User;
+
 
 public class UserMapperTest {
 
@@ -23,5 +25,7 @@ public class UserMapperTest {
 	public void testQueryUserById() {
 		System.out.println(this.userMapper.queryUserById(1l));
 	}
+	
+
 
 }

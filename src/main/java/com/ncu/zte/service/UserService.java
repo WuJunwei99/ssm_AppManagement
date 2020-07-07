@@ -2,6 +2,7 @@ package com.ncu.zte.service;
 
 import java.util.List;
 
+import org.junit.validator.PublicClassValidator;
 import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,19 @@ public class UserService {
 		// TODO Auto-generated method stub
 		return userMapper.queryUserAll();
 	}
+	
+	public void addUsers(User user1, User user2) {
+		this.userMapper.addUser(user1);
+		// 制造异常
+		int i=1/0;
+		this.userMapper.addUser(user2);
+	}
+	
+	public Boolean saveUser(User user){
+		return this.userMapper.addUser(user) == 1;	
+	}
+	
+
 	
 	
 }
