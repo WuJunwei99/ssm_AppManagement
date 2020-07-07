@@ -14,19 +14,22 @@
 </head>
 <body>
 	<div>
-    <table class="easyui-datagrid" id="userList" title="会员列表" 
-	       data-options="singleSelect:false,collapsible:true,url:'${pageContext.request.contextPath }/user/list',method:'get',toolbar:toolbar">
+    <table class="easyui-datagrid" id="userList" title="APP列表" 
+	       data-options="singleSelect:false,collapsible:true,url:'${pageContext.request.contextPath }/Appinfo/list',method:'get',toolbar:toolbar">
 	    <thead>
 	        <tr>
 	        	<th data-options="field:'ck',checkbox:true"></th>
-	        	<th data-options="field:'id',width:60">ID</th>
-	            <th data-options="field:'userName',width:200">用户名</th>
-	            <th data-options="field:'name',width:100">姓名</th>
-	            <th data-options="field:'age',width:100">年龄</th>
-	            <th data-options="field:'sex',width:80,align:'right',formatter:formatSet">性别</th>
-	            <th data-options="field:'birthday',width:80,align:'right',formatter:formatBirthday">出生日期</th>
-	            <th data-options="field:'created',width:130,align:'center',formatter:formatDate">创建日期</th>
-	            <th data-options="field:'updated',width:130,align:'center',formatter:formatDate">更新日期</th>
+	        	<th data-options="field:'softwareName',width:100">软件名称</th>
+	            <th data-options="field:'apkName',width:200">APK名称</th>
+	            <th data-options="field:'softwareSize',width:100">软件大小</th>
+	            <th data-options="field:'platform',width:80,align:'right',formatter:formatSet">所属平台</th>
+				<th data-options="field:'categoryLevel1',width:60">一级分类</th>
+				<th data-options="field:'categoryLevel2',width:60">二级分类</th>
+				<th data-options="field:'categoryLevel3',width:60">三级分类</th>
+				<th data-options="field:'status',width:100">APP状态</th>
+				<th data-options="field:'info',width:300">应用简介</th>
+				<th data-options="field:'downloads',width:60">下载次数</th>
+				<th data-options="field:'versionId',width:60">版本信息</th>
 	        </tr>
 	    </thead>
 	</table>
@@ -100,7 +103,7 @@ var toolbar = [{
     	}
     	$.messager.confirm('确认','确定删除ID为 '+ids+' 的会员吗？',function(r){
     	    if (r){
-            	$.post("${pageContext.request.contextPath }/user/delete",{'ids':ids}, function(data){
+            	$.post("${pageContext.request.contextPath }/Appinfo/delete",{'ids':ids}, function(data){
         			if(data.status == 200){
         				$.messager.alert('提示','删除会员成功!',undefined,function(){
         					$("#userList").datagrid("reload");
