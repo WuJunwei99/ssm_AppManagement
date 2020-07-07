@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ncu.zte.beans.User;
+import com.ncu.zte.beans.User1;
 import com.ncu.zte.mapper.UserMapper;
 
 @Service
@@ -40,6 +41,11 @@ public class UserService {
 	public Boolean deleteByIds(String[] ids) {
 		// TODO Auto-generated method stub
 		return this.userMapper.deleteByIds(ids) > 0;
+	}
+
+	public User findUserByName(User user) {
+		// TODO Auto-generated method stub
+		return this.userMapper.queryUserByName(user.getUserName());
 	}
 	
 

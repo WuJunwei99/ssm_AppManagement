@@ -26,6 +26,8 @@ public interface UserMapper {
 	public int editUser(@Valid User user);
 
     public int deleteByIds(@Param("ids")String[] ids);
+
+	public User queryUserByName(String userName);
     
 	
 }

@@ -20,9 +20,8 @@ public class UserServiceTest {
 	
 	@Test
 	public void test() {
-		User user1 = new User();
-		user1.setUserName("dengdeng3");
-		user1.setPassword("123456");
-		(this.userService).saveUser(user1);
+		User user = new User();
+		user.setUserName("lina");
+		System.out.println((this.userService).findUserByName(user));
 	}
 }

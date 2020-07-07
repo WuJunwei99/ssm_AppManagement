@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ncu.zte.beans.User;
+import com.ncu.zte.beans.User1;
 import com.ncu.zte.service.UserService;
 
 @Controller
@@ -24,7 +25,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("save")
+	//@RequestMapping("save")
 	@ResponseBody
 	public Map<String, String> saveUser(@Valid User user,BindingResult result){
 	   	
@@ -110,6 +111,56 @@ public class UserController {
         
         return map;
     }
+    
+    
+
+    @RequestMapping("checkUserName")
+    @ResponseBody
+    public Map<String, Object> checkUserName(User user) throws Exception {
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+        
+        // 调用userService的新增方法
+
+	   	User user1 = this.userService.findUserByName(user);
+	   	if(user1==null){
+		   	Boolean flag = this.userService.saveUser(user);
+		   	if(flag){
+			   	map.put("status", "200");
+		   	}else{
+			   	map.put("status", "500");
+		   	}
+	   	}else{
+		   	map.put("status", "500");
+	   	}
+        return map;
+    }
+    
+    @RequestMapping("checkPassword")
+    @ResponseBody
+    public Map<String, Object> checkPassword(User user) throws Exception {
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+        
+        // 调用userService的新增方法
+        System.out.println(user);
+	   	User user1 = this.userService.findUserByName(user);
+	   	if(user1==null){
+	   		map.put("status", "100");
+	   	}else{
+
+	   		if(user1.getPassword().equals(user.getPassword())){
+	   			map.put("status", "200");
+	   		}else{
+	   		
+		   	map.put("status", "500");}
+	   	}
+        return map;
+    }
+    
+    
+    
+
     
     
 }

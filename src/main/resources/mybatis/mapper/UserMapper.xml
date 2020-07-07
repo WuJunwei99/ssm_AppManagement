@@ -39,5 +39,8 @@
 		delete from tb_user where id in
 		<foreach collection="ids" item="id" separator="," open="(" close=")">#{id}</foreach>
 	</delete>
+	<select id="queryUserByName" resultType="user">
+		select * from tb_user where user_name=#{userName}
+	</select>
 	
   </mapper>
