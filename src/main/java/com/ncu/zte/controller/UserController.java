@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ncu.zte.beans.User;
-import com.ncu.zte.beans.User1;
 import com.ncu.zte.service.UserService;
 
 @Controller

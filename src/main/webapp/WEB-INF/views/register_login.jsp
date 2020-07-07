@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,31 +109,31 @@
 
         });
         function submitForm(){
-  			console.log($("#content").serialize());
-  			$.post("${pageContext.request.contextPath }/user/checkUserName",
-  					$("#content").serialize(), 
-  					function(data){
-  						if(data.status == 200){
-  							alert('注册成功!');
-  						}else{
-  							alert('注册失败!');
-  						}
-  					});
+            console.log($("#content").serialize());
+            $.post("${pageContext.request.contextPath }/user/checkUserName",
+                $("#content").serialize(),
+                function(data){
+                    if(data.status == 200){
+                        alert('注册成功!');
+                    }else{
+                        alert('注册失败!');
+                    }
+                });
         }
-        
+
         function submitForm1(){
-  			console.log($("#login0").serialize());
-  			$.post("${pageContext.request.contextPath }/user/checkPassword",
-  					$("#login0").serialize(), 
-  					function(data){
-  						if(data.status == 200){
-  							alert('登陆成功!');
-  						}else if(data.status == 100){
-  							alert('用户名不存在!');
-  						}else{
-  							alert('密码错误!');
-  						}
-  					});
+            console.log($("#login0").serialize());
+            $.post("${pageContext.request.contextPath }/user/checkPassword",
+                $("#login0").serialize(),
+                function(data){
+                    if(data.status == 200){
+                        alert('登陆成功!');
+                    }else if(data.status == 100){
+                        alert('用户名不存在!');
+                    }else{
+                        alert('密码错误!');
+                    }
+                });
         }
     </script>
 
@@ -161,7 +161,7 @@
                 <p class="badge-wrap"><a class="badge"><i class="fab fa-facebook-f"></i></a><a class="badge"><i
                         class="fab fa-google"></i></a><a class="badge"><i class="fab fa-twitter"></i></a><a
                         class="badge"><i class="fab fa-github"></i></a></p>
-                <form id="content" method="post"> 
+                <form id="content" method="post">
                     <div class="form-group">
                         <input class="form-control" type="text" id="register_user_name" name="userName" data-options="required:true"
                                placeholder="用户名4~10长度"
@@ -172,9 +172,9 @@
                                placeholder="密码8~16长度"
                                required="required">
                     </div>
-                   
+
                 </form>
-                 <button class="btn btn-lg" onclick="submitForm()">注册</button>
+                <button class="btn btn-lg" onclick="submitForm()">注册</button>
             </div>
             <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
         </div>
@@ -191,7 +191,7 @@
                     <div class="form-group">
                         <div class="row" style="width: 60%; margin: 0 auto">
                             <input class="form-control col-md-12" type="text" id="login_user_name"
-                                    name="userName" 
+                                   name="userName"
                                    placeholder="用户名4~10长度"
                                    required="required">
                         </div>
@@ -199,7 +199,7 @@
                     <div class="form-group">
                         <div class="row" style="width: 60%; margin: 0 auto">
                             <input class="form-control col-md-12" type="password" id="login_password"
-                                   name="password" 
+                                   name="password"
                                    placeholder="密码8~16长度"
                                    required="required">
                         </div>
@@ -219,11 +219,11 @@
                         </div>
                     </div>
                     <p><a href="#">忘记密码?</a></p>
-                   
+
                 </form>
-                 <button class="btn btn-lg" id="login_button" onclick="submitForm1()">登录</button>
+                <button class="btn btn-lg" id="login_button" onclick="submitForm1()">登录</button>
             </div>
-            
+
             <button class="btn btn-back js-btn" data-target="welcome"><i class="fas fa-angle-left"></i></button>
         </div>
 

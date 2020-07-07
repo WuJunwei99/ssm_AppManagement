@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ncu.zte.beans.User;
-import com.ncu.zte.beans.User1;
+
 import com.ncu.zte.mapper.UserMapper;
 
 @Service
