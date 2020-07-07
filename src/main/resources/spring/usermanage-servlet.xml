@@ -12,7 +12,7 @@
 	<mvc:view-controller path="/user/page/add" view-name="user-add"/>
 	<mvc:view-controller path="/user/page/edit" view-name="appinfo-edit"/>
 	<mvc:view-controller path="/user/login" view-name="register_login"/>
-	<mvc:view-controller path="/app/page/edit" view-name="appinfo-edit"/>
+	<mvc:view-controller path="/appinfo/page/edit" view-name="appinfo-edit"/>
 	<mvc:view-controller path="/app/page/add" view-name="appinfo-add"/>
 	<mvc:view-controller path="/app/apps" view-name="apps"/>
 	

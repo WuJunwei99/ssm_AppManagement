@@ -37,7 +37,7 @@
 <div id="userAdd" class="easyui-window" title="新增会员" data-options="modal:true,closed:true,iconCls:'icon-save',href:'${pageContext.request.contextPath }/appinfo/page/add'" style="width:415px;height:310px;padding:10px;">
         The window content.
 </div>
-<div id="userEdit" class="easyui-window" title="编辑会员" data-options="modal:true,closed:true,iconCls:'icon-save',href:'${pageContext.request.contextPath }/user/page/edit'" style="width:415px;height:300px;padding:10px;">
+<div id="userEdit" class="easyui-window" title="编辑会员" data-options="modal:true,closed:true,iconCls:'icon-save',href:'${pageContext.request.contextPath }/appinfo/page/edit'" style="width:415px;height:300px;padding:10px;">
         The window content.
 </div>
 <script type="text/javascript">
