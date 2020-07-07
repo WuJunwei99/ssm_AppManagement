@@ -22,4 +22,22 @@
 			VALUES(#{userName},#{password},#{name},#{age},#{sex},#{birthday},now(),now());
 	</insert>
 	
+	<update id="editUser">
+		UPDATE tb_user
+		SET
+		user_name = #{userName},
+		name = #{name},
+		age = #{age},
+		sex = #{sex},
+		birthday = #{birthday},
+		updated = NOW()
+		WHERE
+		(id = #{id});
+	</update>
+	
+	<delete id="deleteByIds">
+		delete from tb_user where id in
+		<foreach collection="ids" item="id" separator="," open="(" close=")">#{id}</foreach>
+	</delete>
+	
   </mapper>

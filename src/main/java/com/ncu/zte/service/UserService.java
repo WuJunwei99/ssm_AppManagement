@@ -2,6 +2,8 @@ package com.ncu.zte.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.junit.validator.PublicClassValidator;
 import org.omg.CORBA.PRIVATE_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +28,18 @@ public class UserService {
 		return userMapper.queryUserAll();
 	}
 	
-	public void addUsers(User user1, User user2) {
-		this.userMapper.addUser(user1);
-		// 制造异常
-		int i=1/0;
-		this.userMapper.addUser(user2);
-	}
-	
 	public Boolean saveUser(User user){
 		return this.userMapper.addUser(user) == 1;	
+	}
+
+	public Boolean editUser(@Valid User user) {
+		// TODO Auto-generated method stub
+		return this.userMapper.editUser(user) == 1;
+	}
+
+	public Boolean deleteByIds(String[] ids) {
+		// TODO Auto-generated method stub
+		return this.userMapper.deleteByIds(ids) > 0;
 	}
 	
 

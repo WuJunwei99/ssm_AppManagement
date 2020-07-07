@@ -15,7 +15,6 @@
 	<!-- 配置注解驱动：替代推荐使用的注解映射器和适配器，提供对json的支持 -->
 	<mvc:annotation-driven />
 
-	
 	<!-- 开启注解扫描，和spring是一样的 -->
 	<context:component-scan base-package="com.ncu.zte.controller" />
 	

@@ -16,13 +16,13 @@ public class User {
 
     // 用户名
     @NotNull
-    @Length(min=6, max=20, message="用户名长度不合法")
+   // @Length(min=6, max=20, message="用户名长度不合法")
     private String userName;
 
     // 密码
     @JsonIgnore
     @NotNull
-    @Length(min=6, max=20, message="用户名长度不合法")
+   // @Length(min=6, max=20, message="用户名长度不合法")
     private String password;
 
     // 姓名

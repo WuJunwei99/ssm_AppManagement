@@ -2,6 +2,10 @@ package com.ncu.zte.mapper;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.ncu.zte.beans.User;
 
 public interface UserMapper {
@@ -18,6 +22,10 @@ public interface UserMapper {
 	public List<User> queryUserAll();
 	
 	public int addUser(User user);
+
+	public int editUser(@Valid User user);
+
+    public int deleteByIds(@Param("ids")String[] ids);
     
 	
 }

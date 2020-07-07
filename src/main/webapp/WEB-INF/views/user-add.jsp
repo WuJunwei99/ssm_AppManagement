@@ -5,7 +5,7 @@
 	    <table cellpadding="5">
 	        <tr>
 	            <td>用户名:</td>
-	            <td><input class="easyui-textbox" type="text" name="userName" data-options="required:true" style="width: 280px;"></input></td>
+	            <td><input class="easyui-textbox" type="text" id="userName" name="userName" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
 	        <tr>
 	            <td>密码:</td>
@@ -41,6 +41,9 @@
 	</div>
 </div>
 <script type="text/javascript">
+
+
+
 	function submitForm(){
 		if(!$('#content').form('validate')){
 			$.messager.alert('提示','表单还未填写完成!');
