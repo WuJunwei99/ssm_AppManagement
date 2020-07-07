@@ -12,7 +12,8 @@
 	
 	<!-- 视图控制器，path：请求路径，view-name：视图名称 -->
 	<mvc:view-controller path="/user/users" view-name="users"/>
-	
+	<mvc:view-controller path="/user/login" view-name="register_login"/>
+
 	<!-- 开启注解扫描，和spring是一样的 -->
 	<context:component-scan base-package="com.ncu.zte.controller" />
 	
