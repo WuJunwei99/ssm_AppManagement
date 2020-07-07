@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.validator.PublicClassValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,14 +20,23 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-    @RequestMapping("users")
-    public String toUsers(){
-        
-        return "users";
-    }
-    
+	@RequestMapping("save")
+	@ResponseBody
+	public Map<String, String> saveUser(User user){
+	   	Map<String, String> map = new HashMap<>();
+	   	Boolean flag = this.userService.saveUser(user);
+	   	if(flag){
+		   	map.put("status", "200");
+	   	}else{
+		   	map.put("status", "500");
+	   	}
+
+	   	return map;
+	}
+	
+
     @RequestMapping("list")
-    @ResponseBody
+    @ResponseBody		//把Controller方法返回值转化为JSON，称为序列化
     public Map<String, Object> queryUserAll(){
     	
     	Map<String, Object> map = new HashMap<>();
@@ -37,8 +47,6 @@ public class UserController {
     	List<User> users = this.userService.queryUserAll();
     	map.put("rows",users);
     	return map;
-    
-    	
     }
-
+    
 }

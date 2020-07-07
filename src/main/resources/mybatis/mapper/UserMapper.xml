@@ -16,4 +16,10 @@
 		select * from tb_user
 	</select>
 	
+	<insert id="addUser" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		INSERT INTO tb_user (user_name,password,name,age,sex,birthday,created,updated)
+			VALUES(#{userName},#{password},#{name},#{age},#{sex},#{birthday},now(),now());
+	</insert>
+	
   </mapper>

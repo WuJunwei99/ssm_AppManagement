@@ -16,5 +16,8 @@ public interface UserMapper {
 	public Long queryTotal();
 
 	public List<User> queryUserAll();
+	
+	public int addUser(User user);
     
+	
 }
