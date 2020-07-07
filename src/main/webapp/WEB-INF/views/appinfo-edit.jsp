@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div style="padding:10px 10px 10px 10px">
-	<form id="content" method="post">
+	<form id="editContent" method="post">
+		<input type="hidden" name="id"/>
+		<input type="hidden" name="password" value="111"/>
 	    <table cellpadding="5">
 	        <tr>
 	            <td>软件名称:</td>
@@ -56,27 +58,22 @@
 	</div>
 </div>
 <script type="text/javascript">
-
-
-
 	function submitForm(){
 		if(!$('#content').form('validate')){
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		$.post("${pageContext.request.contextPath }/Appinfo/save",
-				$("#content").serialize(), 
-				function(data){
-					if(data.status == 200){
-						$.messager.alert('提示','新增会员成功!');
-						$('#userAdd').window('close');
-						$("#userList").datagrid("reload");
-						clearForm();
-					}else{
-						$.messager.alert('提示','新增会员失败!');
-					}
-				});
-		}
+		$.post("${pageContext.request.contextPath }/Appinfo/edit",$("#editContent").serialize(), function(data){
+			if(data.status == 200){
+				$.messager.alert('提示','更新会员成功!');
+				$('#userEdit').window('close');
+				$("#userList").datagrid("reload");
+				clearForm();
+			}else{
+				$.messager.alert('提示','更新会员失败!');
+			}
+		});
+	}
 	function clearForm(){
 		$('#content').form('reset');
 	}

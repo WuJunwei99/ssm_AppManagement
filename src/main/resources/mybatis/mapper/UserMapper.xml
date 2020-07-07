@@ -18,19 +18,15 @@
 	
 	<insert id="addUser" useGeneratedKeys="true" keyColumn="id"
 		keyProperty="id">
-		INSERT INTO tb_user (user_name,password,name,age,sex,birthday,created,updated)
-			VALUES(#{userName},#{password},#{name},#{age},#{sex},#{birthday},now(),now());
+		INSERT INTO tb_user (user_name,password,name)
+			VALUES(#{userName},#{password},#{name});
 	</insert>
 	
 	<update id="editUser">
 		UPDATE tb_user
 		SET
 		user_name = #{userName},
-		name = #{name},
-		age = #{age},
-		sex = #{sex},
-		birthday = #{birthday},
-		updated = NOW()
+		name = #{name}
 		WHERE
 		(id = #{id});
 	</update>

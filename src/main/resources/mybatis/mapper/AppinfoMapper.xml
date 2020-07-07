@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ncu.zte.mapper.AppinfoMapper">
+  
+  	<select id="queryAppByAppName" resultType="Appinfo">
+		select * from tb_app_info where software_name=#{softwareName}
+	</select>
+	
+  	<select id="queryTotal" resultType="Long">
+		select count(*) from tb_app_info
+	</select>
+	
+	<select id="queryAllApp" resultType="Appinfo">
+		select * from tb_app_info
+	</select>
+	
+	<insert id="addApp" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		INSERT INTO 
+			tb_app_info (software_name,
+					apk_name,
+					software_size,
+					platform,
+					category_level1,
+					category_level2,
+					category_level3,
+					status,
+					info,
+					downloads,
+					versionId
+					)
+			VALUES(
+					#{softwareName},
+					#{apkName},
+					#{softwareSize},
+					#{platform},
+					#{categoryLevel1},
+					#{categoryLevel2},
+					#{categoryLevel3},
+					#{status},
+					#{info},
+					#{downloads},
+					#{versionId}
+					);
+	</insert>
+	
+	<update id="updateApp">
+		UPDATE tb_app_info
+		SET
+		software_name = #{softwareName},
+		apk_name = #{apkName},
+		software_size = #{softwareSize},
+		platform = #{platform},
+		category_level1 = #{categoryLevel1},
+		category_level2 = #{categoryLevel2},
+		category_level3 = #{categoryLevel3},
+		status = #{status},
+		info = #{info},
+		downloads = #{downloads},
+		versionId = #{versionId}
+		WHERE
+		(id = #{id});
+	</update>
+	
+	<delete id="deleteByIds">
+		delete from tb_app_info where id in
+		<foreach collection="ids" item="id" separator="," open="(" close=")">#{id}</foreach>
+	</delete>
+
+	
+  </mapper>

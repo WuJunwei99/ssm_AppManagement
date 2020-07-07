@@ -29,20 +29,6 @@ public class User {
     @NotNull
     private String name;
 
-    // 年龄
-    @NotNull
-    private Integer age;
-
-    // 性别，1男性，2女性
-    @NotNull
-    private Integer sex;
-
-    // 出生日期
-    @NotNull
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @Past(message="生日必须是过去式")
-    private Date birthday;
-
     // 创建时间
     private Date created;
 
@@ -81,50 +67,10 @@ public class User {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
 
     @Override
     public String toString() {
         return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", name=" + name
-                + ", age=" + age + ", sex=" + sex + ", birthday=" + birthday + ", created=" + created
-                + ", updated=" + updated + "]";
+               + "]";
     }
 }

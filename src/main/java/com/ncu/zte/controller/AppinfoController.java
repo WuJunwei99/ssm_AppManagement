@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.junit.validator.PublicClassValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,19 +13,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ncu.zte.beans.User;
-import com.ncu.zte.service.UserService;
+import com.ncu.zte.beans.Appinfo;
+import com.ncu.zte.service.AppinfoService;
 
 @Controller
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("Appinfo")
+public class AppinfoController {
 
 	@Autowired
-	private UserService userService;
-
-	//@RequestMapping("save")
+	AppinfoService appinfoService;
+	
+    /**
+     * 请求路径：/save
+     * 方法返回值：{status：200}
+     * 参数：Appinfo对象
+     */
+	@RequestMapping("save")
 	@ResponseBody
-	public Map<String, String> saveUser(@Valid User user,BindingResult result){
+	public Map<String, String> saveAppinfo(@Valid Appinfo appinfo,BindingResult result){
 	   	
 	   	Map<String, String> map = new HashMap<>();
 	   	
@@ -37,7 +41,7 @@ public class UserController {
             return map;
         }
         
-	   	Boolean flag = this.userService.saveUser(user);
+	   	Boolean flag = this.appinfoService.saveAppinfo(appinfo);
 	   	if(flag){
 		   	map.put("status", "200");
 	   	}else{
@@ -47,28 +51,32 @@ public class UserController {
 	   	return map;
 	}
 	
+    /**
+     * 请求路径：/list
+     * 方法返回值：Map<String, Object>
+     * 参数：
+     */
     @RequestMapping("list")
     @ResponseBody		//把Controller方法返回值转化为JSON，称为序列化
-    public Map<String, Object> queryUserAll(){
-    	
+    public Map<String, Object> queryAppinfoAll(){
     	Map<String, Object> map = new HashMap<>();
     	//查询总条数
-    	Long total = this.userService.queryTotal();
+    	Long total = this.appinfoService.queryTotal();
     	map.put("total", total);
-    	//查询用户列表List<User>
-    	List<User> users = this.userService.queryUserAll();
-    	map.put("rows",users);
+    	//查询用户列表List<appinfo>
+    	List<Appinfo> appinfo = this.appinfoService.queryAppinfoAll();
+    	map.put("rows",appinfo);
     	return map;
     }
     
     /**
      * 请求路径：/edit
      * 方法返回值：{status：200}
-     * 参数：User对象
+     * 参数：Appinfo对象
      */
     @RequestMapping("edit")
     @ResponseBody
-    public Map<String, Object> editUser(@Valid User user, BindingResult result) throws Exception {
+    public Map<String, Object> editUser(@Valid Appinfo appinfo, BindingResult result) throws Exception {
         
         Map<String, Object> map = new HashMap<String, Object>();
         
@@ -80,7 +88,7 @@ public class UserController {
         }
         
         // 调用userService的新增方法
-        Boolean b = this.userService.editUser(user);
+        Boolean b = this.appinfoService.editAppinfo(appinfo);
         if (b) {
             map.put("status", 200);
         }else{
@@ -96,12 +104,12 @@ public class UserController {
      */
     @RequestMapping("delete")
     @ResponseBody
-    public Map<String, Object> deleteUser(@RequestParam("ids")String[] ids) throws Exception {
+    public Map<String, Object> deleteAppinfo(@RequestParam("ids")String[] ids) throws Exception {
         
         Map<String, Object> map = new HashMap<String, Object>();
         
         // 调用userService的新增方法
-        Boolean b = this.userService.deleteByIds(ids);
+        Boolean b = this.appinfoService.deleteByIds(ids);
         if (b) {
             map.put("status", 200);
         }else{
@@ -110,56 +118,4 @@ public class UserController {
         
         return map;
     }
-    
-    
-
-    @RequestMapping("checkUserName")
-    @ResponseBody
-    public Map<String, Object> checkUserName(User user) throws Exception {
-        
-        Map<String, Object> map = new HashMap<String, Object>();
-        
-        // 调用userService的新增方法
-
-	   	User user1 = this.userService.findUserByName(user);
-	   	if(user1==null){
-		   	Boolean flag = this.userService.saveUser(user);
-		   	if(flag){
-			   	map.put("status", "200");
-		   	}else{
-			   	map.put("status", "500");
-		   	}
-	   	}else{
-		   	map.put("status", "500");
-	   	}
-        return map;
-    }
-    
-    @RequestMapping("checkPassword")
-    @ResponseBody
-    public Map<String, Object> checkPassword(User user) throws Exception {
-        
-        Map<String, Object> map = new HashMap<String, Object>();
-        
-        // 调用userService的新增方法
-        System.out.println(user);
-	   	User user1 = this.userService.findUserByName(user);
-	   	if(user1==null){
-	   		map.put("status", "100");
-	   	}else{
-
-	   		if(user1.getPassword().equals(user.getPassword())){
-	   			map.put("status", "200");
-	   		}else{
-	   		
-		   	map.put("status", "500");}
-	   	}
-        return map;
-    }
-    
-    
-    
-
-    
-    
 }
