@@ -43,6 +43,6 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>register_login.jsp</welcome-file>
+		<welcome-file>${pageContext.request.contextPath}/user/my_index</welcome-file>
 	</welcome-file-list>
 </web-app>
