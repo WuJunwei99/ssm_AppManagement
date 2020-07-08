@@ -56,9 +56,6 @@
 	</div>
 </div>
 <script type="text/javascript">
-
-
-
 	function submitForm(){
 		if(!$('#content').form('validate')){
 			$.messager.alert('提示','表单还未填写完成!');

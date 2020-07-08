@@ -49,13 +49,14 @@ pageEncoding="UTF-8"%>
                 <div class="ibox-title">
                     <h5>APP信息管理平台<small>----测试员001-您可以通过搜索或则其他筛选项对APP的信息进行修改、删除等管理操作。^_^</small></h5>
                 </div>
+                <form id="content" method="post">
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="col-sm-4">
-                                <label class="col-sm-4 control-label">软件名称：</label>
+                                <label class="col-sm-4 control-label" >软件名称：</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="" id="" class="form-control">
+                                    <input type="text" name="softwareName" id="" class="form-control">
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -121,100 +122,36 @@ pageEncoding="UTF-8"%>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="col-md-2 text-center">
-                                <button type="button" class="btn btn-w-m btn-info">查&nbsp;&nbsp;询</button>
+                                <button type="button" class="btn btn-w-m btn-info" id="send" onclick="submitForm()"> 查&nbsp;&nbsp;询</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                	</form>
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <table class="table table-striped table-bordered table-hover dataTables-example"
                            id="dataTables-example">
-                        <thead>
                         <tr>
                             <th>软件名称</th>
                             <th>APK名称</th>
                             <th>软件大小(单位:M)</th>
                             <th>所属平台</th>
-                            <th>状态</th>
+                          	<th>一级分类</th>
+                            <th>二级分类</th>
+                            <th>三级分类</th>
+                            <th>APP状态</th>
+                            <th>应用简介</th>
                             <th>下载次数</th>
                             <th>最新版本</th>
                             <th>操作</th>
                         </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="gradeX">
-                            <td>沙盘玩具:The Power Toy</td>
-                            <td>com.doodleapps.powdertoy
-                            </td>
-                            <td>1.00</td>
-                            <td>通用</td>
-                            <td>4</td>
-                            <td>4</td>
-                            <td>1</td>
-                            <td>
-                                <div class="btn-group my_btn-group">
-                                    <button data-toggle="dropdown"
-                                            class="btn btn-default dropdown-toggle my_dropdownbtn">进行操作<span
-                                            class="caret my_create"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">删除</a>
-                                        </li>
-                                        <li><a href="#">上架</a>
-                                        </li>
-                                        <li><a href="#">下架</a>
-                                        </li>
-                                        <li><a href="#">新增版本</a>
-                                        </li>
-                                        <li><a href="#">修改版本</a>
-                                        </li>
-                                        <li><a href="#">修改基础信息</a>
-                                        </li>
-                                        <li><a href="#">查看基础信息</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="gradeC">
-                            <td>Trident</td>
-                            <td>Internet Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td class="center">4</td>
-                            <td class="center">X</td>
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                        </tr>
-                        <tr class="gradeX">
-                            <td>Misc</td>
-                            <td>Dillo 0.8</td>
-                            <td>Embedded devices</td>
-                            <td class="center">-</td>
-                            <td class="center">X</td>
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                        </tr>
-                        <tr class="gradeX">
-                            <td>Misc</td>
-                            <td>NetFront 3.1</td>
-                            <td>Embedded devices</td>
-                            <td class="center">-</td>
-                            <td class="center">C</td>
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                        </tr>
-                        </tbody>
+ 
                     </table>
 
                 </div>
@@ -236,6 +173,56 @@ pageEncoding="UTF-8"%>
 <script src="${pageContext.request.contextPath }/assets/js/content.js?v=1.0.0"></script>
 <!-- Page-Level Scripts -->
 <script>
+function submitForm(){
+	$.post("${pageContext.request.contextPath }/Appinfo/querylist",
+			$("#content").serialize(), 
+			function(data){
+
+		console.log(data.rows.length)
+		var table=document.getElementById("dataTables-example");
+		if(data.rows.length==0){
+			alert('没有查询到相关信息');
+		}
+		var rowNum=table.rows.length;
+	     for (var i=1;i<rowNum;i++)
+	     {
+	    	 table.deleteRow(i);
+	         rowNum=rowNum-1;
+	         i=i-1;
+	     }
+		for(var i=0;i<data.rows.length;i++){
+		    var row=table.insertRow(table.rows.length);
+		    var c1=row.insertCell(0);
+		    c1.innerHTML=data.rows[i].softwareName;
+		    var c2=row.insertCell(1);
+		    c2.innerHTML=data.rows[i].apkName;
+		    var c3=row.insertCell(2);
+		    c3.innerHTML=data.rows[i].softwareSize;
+		    var c4=row.insertCell(3);
+		    c4.innerHTML=data.rows[i].platform;
+		    var c5=row.insertCell(4);
+		    c5.innerHTML=data.rows[i].categoryLevel1;
+		    var c6=row.insertCell(5);
+		    c6.innerHTML=data.rows[i].categoryLevel2;
+		    var c7=row.insertCell(6);
+		    c7.innerHTML=data.rows[i].categoryLevel3;
+		    var c8=row.insertCell(7);
+		    c8.innerHTML=data.rows[i].status;
+		    var c9=row.insertCell(8);
+		    c9.innerHTML=data.rows[i].info;
+		    var c10=row.insertCell(9);
+		    c10.innerHTML=data.rows[i].downloads;
+		    var c11=row.insertCell(10);
+		    c11.innerHTML=data.rows[i].versionId;
+		    var c12=row.insertCell(11);
+		    c12.innerHTML ="<div class='btn-group my_btn-group'><button data-toggle='dropdown' class='btn btn-default dropdown-toggle my_dropdownbtn'>进行操作<span class='caret my_create'></span></button><ul class='dropdown-menu'><li><a>删除</a></li><li><a >上架</a></li><li><a >下架</a></li><li><a >新增版本</a></li><li><a href='#'>修改版本</a></li></ul></div>"
+
+		}
+			});
+	}
+function clearForm(){
+	$('#content').form('reset');
+}
     $(document).ready(function () {
         $('#dataTables-example').dataTable({
             "lengthMenu": [5, 10, 15, 20]
@@ -276,6 +263,19 @@ pageEncoding="UTF-8"%>
             "New row"]);
 
     }
+
+    $('#send').click(function () {
+    	$.getJSON("${pageContext.request.contextPath }/Appinfo/querylist",function(data){
+    		
+    	})
+	})	
+    var data=[{"uid":"2688","uname":"*江苏省南菁高级中学 022","sum":274.23},{"uid":"2689","uname":"*江阴国际会展中心管理有限公司 024","sum":0},{"uid":"2686","uname":"江苏申利实业股份有限公司 001","sum":7917.94},{"uid":"2715","uname":"江阴市吉达针纺有限公司 115","sum":41.39},{"uid":"2688","uname":"*江苏省南菁高级中学 022","sum":274.23}]
+    /*for(var i=0;i<data.length;i++){
+    alert(i);
+    alert(data[i]);
+    alert("id:"+data[0].uid+"name:"+data[0].uname)
+}*/
+
 </script>
 <!-- iCheck -->
 <script src="${pageContext.request.contextPath }/assets/js/plugins/iCheck/icheck.min.js"></script>

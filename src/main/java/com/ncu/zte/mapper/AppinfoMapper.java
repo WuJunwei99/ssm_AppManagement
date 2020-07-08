@@ -14,7 +14,7 @@ public interface AppinfoMapper {
      * @param id
      * @return Appinfo
      */
-    public Appinfo queryAppByAppName(String softwareName);
+    public List<Appinfo> queryAppByAppName(String softwareName);
     
 	 /**
      * 查询数据库app信息数量

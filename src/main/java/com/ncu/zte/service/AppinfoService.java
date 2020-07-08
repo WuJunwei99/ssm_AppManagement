@@ -42,6 +42,11 @@ public class AppinfoService {
 		return appinfoMapper.queryAllApp();
 	}
 
+	public List<Appinfo> queryAppinfoByName(String softwareName) {
+		// TODO Auto-generated method stub
+		return appinfoMapper.queryAppByAppName(softwareName);
+	}
+
 
 
 }

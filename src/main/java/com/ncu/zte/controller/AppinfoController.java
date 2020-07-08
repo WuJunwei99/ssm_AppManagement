@@ -118,4 +118,25 @@ public class AppinfoController {
         
         return map;
     }
+    
+    
+    /**
+     * 请求路径：/querylist
+     * 方法返回值：{status：200}
+     * 参数：以逗号分割的ids
+     */
+    @RequestMapping("querylist")
+    @ResponseBody
+    public Map<String, Object> queryAppinfoByName(Appinfo appinfo0){
+    	System.out.println(appinfo0.getSoftwareName());
+    	Map<String, Object> map = new HashMap<>();
+    	//查询总条数
+    	Long total = this.appinfoService.queryTotal();
+    	map.put("total", total);
+    	//查询用户列表List<appinfo>
+    	List<Appinfo> appinfo = this.appinfoService.queryAppinfoByName(appinfo0.getSoftwareName());
+    	map.put("rows",appinfo);
+    	System.out.println(map);
+    	return map;
+    }
 }

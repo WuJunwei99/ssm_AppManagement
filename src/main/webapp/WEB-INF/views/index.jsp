@@ -59,10 +59,11 @@ pageEncoding="UTF-8"%>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-tv"></i> <span class="nav-label">APP应用管理</span><span
+                    <a href="#"><i class="fa fa-tv"></i> <span class="nav-label" href="${pageContext.request.contextPath}/app/page/add">APP应用理管</span><span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="${pageContext.request.contextPath}/user/app_maintain">APP维护</a></li>
+                        <li><a class="J_menuItem" href="${pageContext.request.contextPath}/user/app_maintain">APP查询</a></li>
+                        <li><a class="J_menuItem" href="${pageContext.request.contextPath}/app/apps">APP管理</a></li>
                     </ul>
                 </li>
             </ul>

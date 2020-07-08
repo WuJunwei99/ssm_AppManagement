@@ -18,6 +18,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/common.js"></script>
 </head>
 <body>
+
 	<div>
     <table class="easyui-datagrid" id="userList" title="APP列表" 
 	       data-options="singleSelect:false,collapsible:true,url:'${pageContext.request.contextPath }/Appinfo/list',method:'get',toolbar:toolbar">

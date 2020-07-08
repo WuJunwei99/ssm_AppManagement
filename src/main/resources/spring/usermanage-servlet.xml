@@ -13,7 +13,7 @@
 	<mvc:view-controller path="/user/page/edit" view-name="appinfo-edit"/>
 	<mvc:view-controller path="/user/login" view-name="register_login"/>
 	<mvc:view-controller path="/appinfo/page/edit" view-name="appinfo-edit"/>
-	<mvc:view-controller path="/app/page/add" view-name="appinfo-add"/>
+	<mvc:view-controller path="/appinfo/page/add" view-name="appinfo-add"/>
 	<mvc:view-controller path="/app/apps" view-name="apps"/>
 	
 	<mvc:view-controller path="/user/index" view-name="index"/>
@@ -26,24 +26,6 @@
     <mvc:view-controller path="/user/mailbox" view-name="mailbox"/>
     <mvc:view-controller path="/user/per_space_profile" view-name="per_space_profile"/>
 	
-	<!-- 配置注解驱动：替代推荐使用的注解映射器和适配器，提供对json的支持 -->
-	<mvc:annotation-driven />
-
-
-    <mvc:view-controller path="/user/users" view-name="users"/>
-    <mvc:view-controller path="/user/page/add" view-name="user-add"/>
-    <mvc:view-controller path="/user/page/edit" view-name="user-edit"/>
-    <mvc:view-controller path="/user/login" view-name="register_login"/>
-    <mvc:view-controller path="/user/index" view-name="index"/>
-    <mvc:view-controller path="/user/my_index" view-name="my_index"/>
-
-    <mvc:view-controller path="/user/app_maintain" view-name="app_maintain"/>
-    <mvc:view-controller path="/user/dor_info_face_edit" view-name="dor_info_face_edit"/>
-    <mvc:view-controller path="/user/mail_compose" view-name="mail_compose"/>
-    <mvc:view-controller path="/user/mail_detail" view-name="mail_detail"/>
-    <mvc:view-controller path="/user/mailbox" view-name="mailbox"/>
-    <mvc:view-controller path="/user/per_space_profile" view-name="per_space_profile"/>
-
 
     <!-- 配置注解驱动：替代推荐使用的注解映射器和适配器，提供对json的支持 -->
     <mvc:annotation-driven/>
