@@ -14,7 +14,17 @@ pageEncoding="UTF-8"%>
     <link href="${pageContext.request.contextPath }/assets/css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/assets/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/assets/css/style.css?v=4.1.0" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath }/js/jquery-easyui-1.4/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath }/js/jquery-easyui-1.4/themes/icon.css"/>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath }/js/jquery-easyui-1.4/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath }/js/jquery-easyui-1.4/jquery.easyui.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath }/js/jquery-easyui-1.4/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/common.js"></script>
 
     <!-- Data Tables -->
     <link href="${pageContext.request.contextPath }/assets/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
@@ -215,11 +225,13 @@ function submitForm(){
 		    var c11=row.insertCell(10);
 		    c11.innerHTML=data.rows[i].versionId;
 		    var c12=row.insertCell(11);
-		    c12.innerHTML ="<div class='btn-group my_btn-group'><button data-toggle='dropdown' class='btn btn-default dropdown-toggle my_dropdownbtn'>进行操作<span class='caret my_create'></span></button><ul class='dropdown-menu'><li><a>删除</a></li><li><a >上架</a></li><li><a >下架</a></li><li><a >新增版本</a></li><li><a href='#'>修改版本</a></li></ul></div>"
+		    c12.innerHTML ="<div class='btn-group my_btn-group'><button data-toggle='dropdown' class='btn btn-default dropdown-toggle my_dropdownbtn'>进行操作<span class='caret my_create'></span></button><ul class='dropdown-menu'><li onclick='fnClickdelete(this)'  value="+data.rows[i].softwareName+" id="+data.rows[i].id+"><a>删除</a></li><li><a >上架</a></li><li><a >下架</a></li><li><a >新增版本</a></li><li><a href='#'>修改版本</a></li></ul></div>"
 
 		}
 			});
 	}
+	
+
 function clearForm(){
 	$('#content').form('reset');
 }
@@ -263,18 +275,32 @@ function clearForm(){
             "New row"]);
 
     }
+    function fnClickdelete(e) {
+    	console.log(e.value)
+    	var ids = [];
+    	ids.push(e.id);
+    	console.log(ids);
+    	ids = ids.join(",");
+    	var flag = confirm("你确定删除"+e.value+"吗？");
+    	if(flag){
+    		$.post("${pageContext.request.contextPath }/Appinfo/delete",{'ids':ids}, function(data){
+    			if(data.status == 200){
+    				alert('提示','删除成功!');
+    			}
+    		});
+    	}else{
+    	  alert("删除失败");	
+    	}
 
-    $('#send').click(function () {
-    	$.getJSON("${pageContext.request.contextPath }/Appinfo/querylist",function(data){
-    		
-    	})
-	})	
-    var data=[{"uid":"2688","uname":"*江苏省南菁高级中学 022","sum":274.23},{"uid":"2689","uname":"*江阴国际会展中心管理有限公司 024","sum":0},{"uid":"2686","uname":"江苏申利实业股份有限公司 001","sum":7917.94},{"uid":"2715","uname":"江阴市吉达针纺有限公司 115","sum":41.39},{"uid":"2688","uname":"*江苏省南菁高级中学 022","sum":274.23}]
-    /*for(var i=0;i<data.length;i++){
-    alert(i);
-    alert(data[i]);
-    alert("id:"+data[0].uid+"name:"+data[0].uname)
-}*/
+    }
+    $("#button").click(function () {
+        for (var i = 0; i < count; i++) {
+            $("ul").append("<li id=" + i + " onclick='dianji(this)'>I'm " + i + "</li>");
+            
+        }
+    })
+
+    
 
 </script>
 <!-- iCheck -->
