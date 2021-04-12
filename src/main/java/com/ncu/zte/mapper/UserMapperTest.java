@@ -2,30 +2,44 @@ package com.ncu.zte.mapper;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.ncu.zte.beans.User;
+import com.ncu.zte.beans.Contract;
+import com.ncu.zte.beans.Student;
+
 
 
 public class UserMapperTest {
 
 
-    private UserMapper userMapper;
+    private StudentMapper userMapper;
+    private ContractMapper contractMapper;
 	@Before
 	public void setUp() throws Exception {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring/applicationContext.xml",
 				"spring/applicationContext-mybatis.xml");
-		this.userMapper = context.getBean(UserMapper.class);
+		this.userMapper = context.getBean(StudentMapper.class);
+		this.contractMapper = context.getBean(ContractMapper.class);
 	}
 
 	@Test
 	public void testQueryUserById() {
-		System.out.println(this.userMapper.queryUserById(1l));
+	List<Student> student = userMapper.selectAll();
+	for(Student s : student)
+		System.out.println(s.toString());
 	}
 	
+	@Test
+	public void testQueryAllContract() {
+	List<Contract> student = contractMapper.selectAll();
+	for(Contract s : student)
+		System.out.println(s.toString());
+	}
 
 
 
