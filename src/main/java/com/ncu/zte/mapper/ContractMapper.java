@@ -11,4 +11,5 @@ public interface ContractMapper extends BaseMapper<Contract,String>{
 	
 	List<Contract> selectAll();
 	
+	List<Contract> selectContractByStudentnum(String studentNum);
 }

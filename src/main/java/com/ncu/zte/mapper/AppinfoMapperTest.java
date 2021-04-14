@@ -10,11 +10,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.ncu.zte.beans.Appinfo;
+import com.ncu.zte.beans.Area;
 
 public class AppinfoMapperTest {
 
 
     private AppinfoMapper appinfoMapper;
+    
+    private AreaMapper areaMapper;
     
 	@Before
 	public void setUp() throws Exception {
@@ -38,12 +41,6 @@ public class AppinfoMapperTest {
 		appinfoMapper.queryAllApp().forEach(System.out::println);
 	}
 
-	@Test
-	public void testAddApp() {
-	Appinfo appinfo = new Appinfo("1","1",new BigDecimal(2.3),"1",2,2,2,"1","1",1,"1");
-	System.out.println(appinfo);
-		appinfoMapper.addApp(appinfo);
-	}
 
 	@Test
 	public void testUpdateApp() {

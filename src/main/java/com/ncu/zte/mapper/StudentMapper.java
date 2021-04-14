@@ -9,4 +9,7 @@ public interface StudentMapper extends BaseMapper<Student,String>{
 	
 	List<Student> selectAll();
 	
+	Student selectStudentByName(String name);
+	
+	
 }

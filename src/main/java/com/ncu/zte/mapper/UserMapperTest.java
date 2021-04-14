@@ -12,8 +12,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.ncu.zte.beans.Contract;
 import com.ncu.zte.beans.Student;
 
-
-
 public class UserMapperTest {
 
 
@@ -40,7 +38,12 @@ public class UserMapperTest {
 	for(Contract s : student)
 		System.out.println(s.toString());
 	}
-
-
+	
+	@Test
+	public void testFindStudentByName() {
+	Student student = userMapper.selectStudentByName("武俊伟");
+	System.out.println(student.toString());
+	}
+	
 
 }
