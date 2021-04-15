@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.ncu.zte.beans.Area;
 import com.ncu.zte.beans.Clazz;
+import com.ncu.zte.beans.Contacts;
 import com.ncu.zte.beans.Student;
 import com.ncu.zte.mapper.AreaMapper;
 import com.ncu.zte.mapper.ClazzMapper;
+import com.ncu.zte.mapper.ContactsMapper;
 import com.ncu.zte.mapper.StudentMapper;
 import com.ncu.zte.service.StudentService;
 @Service
@@ -20,6 +22,8 @@ public class StudentServiceImpl implements StudentService{
 	private AreaMapper areaMapper;
 	@Autowired
 	private ClazzMapper clazzMapper;
+	@Autowired
+	private ContactsMapper contactsMapper;
 
 	public Long queryTotal() {
 		// TODO Auto-generated method stub
@@ -41,6 +45,13 @@ public class StudentServiceImpl implements StudentService{
 		// TODO Auto-generated method stub
 		List<Student> studentList = studentMapper.selectAll();
 		for(Student s : studentList){
+			List<Contacts> contactsList = contactsMapper.selectContactsByStuNum(s.getStudentNum());
+			if(contactsList.size()==1){
+				s.setCantacts1(contactsList.get(0));
+			}else if(contactsList.size()==2){
+				s.setCantacts1(contactsList.get(0));
+				s.setCantacts2(contactsList.get(1));
+			}
 			Area area = areaMapper.selectByAreaID(s.getAreaID());
 			Clazz clazz = clazzMapper.selectByClassId(s.getClazzId());
 			s.setArea(area);
@@ -60,6 +71,13 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public Student selectStudentByName(String name) {
 		Student s =  studentMapper.selectStudentByName(name);
+		List<Contacts> contactsList = contactsMapper.selectContactsByStuNum(s.getStudentNum());
+		if(contactsList.size()==1){
+			s.setCantacts1(contactsList.get(0));
+		}else if(contactsList.size()>=2){
+			s.setCantacts1(contactsList.get(0));
+			s.setCantacts2(contactsList.get(1));
+		}
 		Area area = areaMapper.selectByAreaID(s.getAreaID());
 		Clazz clazz = clazzMapper.selectByClassId(s.getClazzId());
 		s.setArea(area);

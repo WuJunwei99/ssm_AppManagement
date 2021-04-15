@@ -52,5 +52,7 @@ public interface AppinfoMapper {
      * @return int 影响的行数
      */
     public int deleteByIds(@Param("ids")String[] ids);
+
+	public List<Appinfo> queryAppinfoBySelect(Appinfo appinfo);
     
 }

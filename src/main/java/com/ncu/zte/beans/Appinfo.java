@@ -3,16 +3,20 @@ package com.ncu.zte.beans;
 import java.math.BigDecimal;
 import java.util.function.Predicate;
 
+import javax.validation.constraints.NotNull;
+
 public class Appinfo {
 	
+	
 	private int id;
+    @NotNull
 	private String softwareName;
 	private String apkName;
 	private BigDecimal softwareSize;
 	private String platform;
-	private int categoryLevel1;
-	private int categoryLevel2;
-	private int categoryLevel3;
+    private AppCategory categorylevel1;//一级分类id（来自app_category）
+    private AppCategory categorylevel3;//二级分类id（来自app_category）
+    private AppCategory categorylevel2;
 	private String status;
 	private String info;
 	private int downloads;
@@ -21,17 +25,18 @@ public class Appinfo {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Appinfo(String softwareName, String apkName, BigDecimal softwareSize, String platform,
-			int categoryLevel1, int categoryLevel2, int categoryLevel3, String status, String info, int downloads,
-			String versionId) {
+	public Appinfo( @NotNull String softwareName, String apkName, BigDecimal softwareSize, String platform,
+			AppCategory categorylevel1, AppCategory categorylevel2, AppCategory categorylevel3, String status,
+			String info, int downloads, String versionId) {
 		super();
+
 		this.softwareName = softwareName;
 		this.apkName = apkName;
 		this.softwareSize = softwareSize;
 		this.platform = platform;
-		this.categoryLevel1 = categoryLevel1;
-		this.categoryLevel2 = categoryLevel2;
-		this.categoryLevel3 = categoryLevel3;
+		this.categorylevel1 = categorylevel1;
+		this.categorylevel2 = categorylevel2;
+		this.categorylevel3 = categorylevel3;
 		this.status = status;
 		this.info = info;
 		this.downloads = downloads;
@@ -67,23 +72,23 @@ public class Appinfo {
 	public void setPlatform(String platform) {
 		this.platform = platform;
 	}
-	public int getCategoryLevel1() {
-		return categoryLevel1;
+	public AppCategory getCategorylevel1() {
+		return categorylevel1;
 	}
-	public void setCategoryLevel1(int categoryLevel1) {
-		this.categoryLevel1 = categoryLevel1;
+	public void setCategorylevel1(AppCategory categorylevel1) {
+		this.categorylevel1 = categorylevel1;
 	}
-	public int getCategoryLevel2() {
-		return categoryLevel2;
+	public AppCategory getCategorylevel2() {
+		return categorylevel2;
 	}
-	public void setCategoryLevel2(int categoryLevel2) {
-		this.categoryLevel2 = categoryLevel2;
+	public void setCategorylevel2(AppCategory categorylevel2) {
+		this.categorylevel2 = categorylevel2;
 	}
-	public int getCategoryLevel3() {
-		return categoryLevel3;
+	public AppCategory getCategorylevel3() {
+		return categorylevel3;
 	}
-	public void setCategoryLevel3(int categoryLevel3) {
-		this.categoryLevel3 = categoryLevel3;
+	public void setCategorylevel3(AppCategory categorylevel3) {
+		this.categorylevel3 = categorylevel3;
 	}
 	public String getStatus() {
 		return status;
@@ -112,10 +117,12 @@ public class Appinfo {
 	@Override
 	public String toString() {
 		return "Appinfo [id=" + id + ", softwareName=" + softwareName + ", apkName=" + apkName + ", softwareSize="
-				+ softwareSize + ", platform=" + platform + ", categoryLevel1=" + categoryLevel1
-				+ ", categoryLevel2=" + categoryLevel2 + ", categoryLevel3=" + categoryLevel3 + ", status=" + status
-				+ ", info=" + info + ", downloads=" + downloads + ", versionId=" + versionId + "]";
+				+ softwareSize + ", platform=" + platform + ", categorylevel1=" + categorylevel1 + ", categorylevel2="
+				+ categorylevel2 + ", categorylevel3=" + categorylevel3 + ", status=" + status + ", info=" + info
+				+ ", downloads=" + downloads + ", versionId=" + versionId + "]";
 	}
+
+
 	
 	
 	

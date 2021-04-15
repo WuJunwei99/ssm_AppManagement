@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ncu.zte.beans.AppCategory;
 import com.ncu.zte.beans.Appinfo;
+import com.ncu.zte.service.AppCategoryService;
 import com.ncu.zte.service.AppinfoService;
 
 @Controller
@@ -21,8 +24,10 @@ import com.ncu.zte.service.AppinfoService;
 public class AppinfoController {
 
 	@Autowired
-	AppinfoService appinfoService;
-	
+	private AppinfoService appinfoService;
+    @Autowired
+    private AppCategoryService appCategoryService;
+    
     /**
      * 请求路径：/save
      * 方法返回值：{status：200}
@@ -31,7 +36,7 @@ public class AppinfoController {
 	@RequestMapping("save")
 	@ResponseBody
 	public Map<String, String> saveAppinfo(@Valid Appinfo appinfo,BindingResult result){
-	   	
+	System.out.println(appinfo);
 	   	Map<String, String> map = new HashMap<>();
 	   	
         // 如果有异常错误
@@ -128,7 +133,7 @@ public class AppinfoController {
     @RequestMapping("querylist")
     @ResponseBody
     public Map<String, Object> queryAppinfoByName(Appinfo appinfo0){
-    	System.out.println(appinfo0.getSoftwareName());
+    	System.out.println(appinfo0.getStatus());
     	Map<String, Object> map = new HashMap<>();
     	//查询总条数
     	Long total = this.appinfoService.queryTotal();
@@ -138,5 +143,38 @@ public class AppinfoController {
     	map.put("rows",appinfo);
     	System.out.println(map);
     	return map;
+    }
+    
+    /**
+     * 请求路径：/queryByselect
+     * 方法返回值：{status：200}
+     * 参数：以逗号分割的ids
+     */
+    @RequestMapping("queryByselect")
+    @ResponseBody
+    public Map<String, Object> queryAppinfoBySelect(Appinfo appinfo){
+    	System.out.println(appinfo);
+    	Map<String, Object> map = new HashMap<>();
+    	//查询总条数
+    	Long total = this.appinfoService.queryTotal();
+    	map.put("total", total);
+    	//查询用户列表List<appinfo>
+    	List<Appinfo> appinfo0 = this.appinfoService.queryAppinfoBySelect(appinfo);
+    	map.put("rows",appinfo0);
+    	return map;
+    }
+
+    /**
+     * 获取分类列表
+     * @param level 分类等级
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "category", method = RequestMethod.GET)
+    public List<AppCategory> getCategory(String level, String parent){
+        if (parent != null && parent.length() > 0){
+            return appCategoryService.getCategoryByCategoryCodeAndParent(level,parent);
+        }
+        return appCategoryService.getCategoryByCategoryCode(level);
     }
 }

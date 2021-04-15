@@ -6,8 +6,10 @@ import java.util.Date;
 public class Contract {
 	
 	private Long id;				//id
+	private int contractType;		//贷款类型		//0：新生首贷		1：老生首贷	2：续贷
+	private int contractBankType;	//贷款银行		//0：国家开发银行	1：农信社		2：特殊
 	private String contractId;		//合同号
-	private Long studentNum;			//学号
+	private Long studentNum;		//学号
 	private String amount;			//金额
 	private String lender;			//贷款机构
 	private String branchLender;	//分支机构
@@ -82,13 +84,27 @@ public class Contract {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
+	
+	public int getContractType() {
+		return contractType;
+	}
+	public void setContractType(int contractType) {
+		this.contractType = contractType;
+	}
+	public int getContractBankType() {
+		return contractBankType;
+	}
+	public void setContractBankType(int contractBankType) {
+		this.contractBankType = contractBankType;
+	}
 	@Override
 	public String toString() {
-		return "Contract [id=" + id + ", contractId=" + contractId + ", studengNum=" + studentNum + ", amount=" + amount
-				+ ", lender=" + lender + ", branchLender=" + branchLender + ", agent=" + agent + ", approveDate="
-				+ approveDate + ", beginDate=" + beginDate + ", endDate=" + endDate + ", student=" + student + "]";
+		return "Contract [id=" + id + ", contractType=" + contractType + ", contractBankType=" + contractBankType
+				+ ", contractId=" + contractId + ", studentNum=" + studentNum + ", amount=" + amount + ", lender="
+				+ lender + ", branchLender=" + branchLender + ", agent=" + agent + ", approveDate=" + approveDate
+				+ ", beginDate=" + beginDate + ", endDate=" + endDate + ", student=" + student + "]";
 	}
-	
+
 	
 	
 	

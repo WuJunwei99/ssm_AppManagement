@@ -3,6 +3,53 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.ncu.zte.mapper.AppinfoMapper">
+  <sql id="appInfoColumns">
+          a.id,
+          a.software_name,
+          a.apk_name,
+          a.software_size,
+          a.platform,
+          a.category_level1,
+          a.category_level2,
+          a.category_level3,
+          a.status,
+          a.info,
+          a.downloads,
+          a.versionId,
+          app1.`categoryName` AS cat1,
+          app1.`parentId` AS parent1,
+          app2.`categoryName` cat2,
+          app2.`parentId` AS parent2,
+          app3.`categoryName` cat3,
+          app3.`parentId` AS parent3
+    </sql>
+  
+  <resultMap type="Appinfo" id="queryAppinfo_resultMap">
+  	<id column="id" property="id"/>
+  	<result column="software_name" property="softwareName"></result>
+  	<result column="apk_name" property="apkName"></result>
+  	<result column="software_size" property="softwareSize"></result>
+  	<result column="platform" property="platform"></result>
+  	<result column="status" property="status"></result>
+  	<result column="info" property="info"></result>
+  	<result column="downloads" property="downloads"></result>
+  	<result column="versionId" property="versionId"></result>
+    <association property="categorylevel1" javaType="AppCategory">
+        <id column="category_level1" jdbcType="BIGINT" property="id"/>
+        <result column="cat1" property="categoryname"/>
+        <result column="parent1" property="parentid"/>
+    </association>
+    <association property="categorylevel2" javaType="AppCategory">
+        <id column="category_level2" jdbcType="BIGINT" property="id"/>
+        <result column="cat2" property="categoryname"/>
+        <result column="parent2" property="parentid"/>
+    </association>
+    <association property="categorylevel3" javaType="AppCategory">
+        <id column="category_level3" jdbcType="BIGINT" property="id"/>
+        <result column="cat3" property="categoryname"/>
+        <result column="parent3" property="parentid"/>
+    </association>
+  </resultMap>
   
   	<select id="queryAppByAppName" resultType="Appinfo">
 		select * from tb_app_info where software_name=#{softwareName}
@@ -12,12 +59,16 @@
 		select count(*) from tb_app_info
 	</select>
 	
-	<select id="queryAllApp" resultType="Appinfo">
-		select * from tb_app_info
+	<select id="queryAllApp" resultMap="queryAppinfo_resultMap">
+		select <include refid="appInfoColumns"/>
+		 from tb_app_info a
+			LEFT JOIN app_category AS app1 ON a.`category_level1` = app1.`id`
+	        LEFT JOIN app_category AS app2 ON a.`category_level2` = app2.`id`
+	        LEFT JOIN app_category AS app3 ON a.`category_level3` = app3.`id`
 	</select>
 	
 	<insert id="addApp" useGeneratedKeys="true" keyColumn="id"
-		keyProperty="id">
+		 parameterType="AppInfo">
 		INSERT INTO 
 			tb_app_info (software_name,
 					apk_name,
@@ -36,9 +87,9 @@
 					#{apkName},
 					#{softwareSize},
 					#{platform},
-					#{categoryLevel1},
-					#{categoryLevel2},
-					#{categoryLevel3},
+					#{categorylevel1.id},
+					#{categorylevel2.id},
+					#{categorylevel3.id},
 					#{status},
 					#{info},
 					#{downloads},
@@ -46,16 +97,16 @@
 					);
 	</insert>
 	
-	<update id="updateApp">
+	<update id="updateApp" parameterType="AppInfo">
 		UPDATE tb_app_info
 		SET
 		software_name = #{softwareName},
 		apk_name = #{apkName},
 		software_size = #{softwareSize},
 		platform = #{platform},
-		category_level1 = #{categoryLevel1},
-		category_level2 = #{categoryLevel2},
-		category_level3 = #{categoryLevel3},
+		category_level1 = #{categorylevel1.id},
+		category_level2 = #{categorylevel2.id},
+		category_level3 = #{categorylevel3.id},
 		status = #{status},
 		info = #{info},
 		downloads = #{downloads},
@@ -68,6 +119,26 @@
 		delete from tb_app_info where id in
 		<foreach collection="ids" item="id" separator="," open="(" close=")">#{id}</foreach>
 	</delete>
+	
+	<select id="queryAppinfoBySelect" resultMap="queryAppinfo_resultMap">
+		select <include refid="appInfoColumns"/>
+		 from tb_app_info a
+			LEFT JOIN app_category AS app1 ON a.`category_level1` = app1.`id`
+	        LEFT JOIN app_category AS app2 ON a.`category_level2` = app2.`id`
+	        LEFT JOIN app_category AS app3 ON a.`category_level3` = app3.`id`
+		  <trim suffixOverrides="and" prefix="where">
+		      <!-- if标签用来判断一个条件是否成立。如果成立 就执行里面的内容 -->
+		      <if  test="softwareName!= null and softwareName != ''">
+		          software_name like concat('%',#{softwareName},'%')  and 
+		      </if>
+		      <if test="status!= null and status != ''">
+		        status = #{status}
+		      </if>
+		  </trim> 
+
+
+
+	</select>
 
 	
   </mapper>

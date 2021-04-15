@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncu.zte.mapper.AppCategoryMapper">
+
+<select id="selectCategoryByCode" resultType="AppCategory">
+	select * from app_category where categorycode =#{categoryCode}
+</select>
+
+<select id="selectCategoryByCodeAndParent" resultType="AppCategory">
+	select * from app_category where categorycode =#{categoryCode} and parentId = #{parentid}
+</select>
+</mapper>

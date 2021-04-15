@@ -15,7 +15,7 @@ public class AppinfoService {
 	@Autowired
 	private AppinfoMapper appinfoMapper;
 
-	public Boolean editAppinfo(@Valid Appinfo appinfo) {
+	public Boolean editAppinfo(Appinfo appinfo) {
 		// TODO Auto-generated method stub
 		return appinfoMapper.updateApp(appinfo)==1;
 	}
@@ -45,6 +45,11 @@ public class AppinfoService {
 	public List<Appinfo> queryAppinfoByName(String softwareName) {
 		// TODO Auto-generated method stub
 		return appinfoMapper.queryAppByAppName(softwareName);
+	}
+
+	public List<Appinfo> queryAppinfoBySelect(Appinfo appinfo) {
+		// TODO Auto-generated method stub
+		return appinfoMapper.queryAppinfoBySelect(appinfo);
 	}
 
 

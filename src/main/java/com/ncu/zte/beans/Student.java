@@ -19,8 +19,8 @@ public class Student {
 	private String candidateNum;	//考生号
 	private String address;			//详细住址
 	private Date admissionDate;		//入学时间
-	private Cantacts cantacts1;		//联系人1
-	private Cantacts cantacts2;		//联系人2
+	private Contacts cantacts1;		//联系人1
+	private Contacts cantacts2;		//联系人2
 	private Long areaID;
 	private Area area;
 	private Clazz clazz;
@@ -31,7 +31,7 @@ public class Student {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getStudentNum() {
+	public String contactsList() {
 		return studentNum;
 	}
 	public void setStudentNum(String studentNum) {
@@ -116,16 +116,16 @@ public class Student {
 	public void setAdmissionDate(Date admissionDate) {
 		this.admissionDate = admissionDate;
 	}
-	public Cantacts getCantacts1() {
+	public Contacts getCantacts1() {
 		return cantacts1;
 	}
-	public void setCantacts1(Cantacts cantacts1) {
+	public void setCantacts1(Contacts cantacts1) {
 		this.cantacts1 = cantacts1;
 	}
-	public Cantacts getCantacts2() {
+	public Contacts getCantacts2() {
 		return cantacts2;
 	}
-	public void setCantacts2(Cantacts cantacts2) {
+	public void setCantacts2(Contacts cantacts2) {
 		this.cantacts2 = cantacts2;
 	}
 	public Long getAreaID() {
@@ -154,6 +154,9 @@ public class Student {
 				+ candidateNum + ", address=" + address + ", admissionDate=" + admissionDate + ", cantacts1="
 				+ cantacts1 + ", cantacts2=" + cantacts2 + ", areaID=" + areaID + ", area=" + area + ", clazz=" + clazz
 				+ "]";
+	}
+	public String getStudentNum() {
+		return studentNum;
 	}
 
 
