@@ -17,12 +17,13 @@ public class Student {
 	private String hotelExpense;	//住宿费	
 	private String sex;				//性别
 	private String candidateNum;	//考生号
-	private Long  cityId;			//城市号
 	private String address;			//详细住址
-	private Date birthday;			//出生日期
 	private Date admissionDate;		//入学时间
 	private Cantacts cantacts1;		//联系人1
 	private Cantacts cantacts2;		//联系人2
+	private Long areaID;
+	private Area area;
+	private Clazz clazz;
 	
 	public Long getId() {
 		return id;
@@ -102,23 +103,12 @@ public class Student {
 	public void setCandidateNum(String candidateNum) {
 		this.candidateNum = candidateNum;
 	}
-	public Long getCityId() {
-		return cityId;
-	}
-	public void setCityId(Long cityId) {
-		this.cityId = cityId;
-	}
+
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public Date getBirthday() {
-		return birthday;
-	}
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
 	}
 	public Date getAdmissionDate() {
 		return admissionDate;
@@ -138,14 +128,35 @@ public class Student {
 	public void setCantacts2(Cantacts cantacts2) {
 		this.cantacts2 = cantacts2;
 	}
+	public Long getAreaID() {
+		return areaID;
+	}
+	public void setAreaID(Long areaID) {
+		this.areaID = areaID;
+	}
+	public Area getArea() {
+		return area;
+	}
+	public void setArea(Area area) {
+		this.area = area;
+	}
+	public Clazz getClazz() {
+		return clazz;
+	}
+	public void setClazz(Clazz clazz) {
+		this.clazz = clazz;
+	}
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", studentNum=" + studentNum + ", name=" + name + ", password=" + password
 				+ ", idCard=" + idCard + ", clazzId=" + clazzId + ", nation=" + nation + ", phone=" + phone + ", qq="
 				+ qq + ", tuition=" + tuition + ", hotelExpense=" + hotelExpense + ", sex=" + sex + ", candidateNum="
-				+ candidateNum + ", cityId=" + cityId + ", address=" + address + ", birthday=" + birthday
-				+ ", admissionDate=" + admissionDate + ", cantacts1=" + cantacts1 + ", cantacts2=" + cantacts2 + "]";
+				+ candidateNum + ", address=" + address + ", admissionDate=" + admissionDate + ", cantacts1="
+				+ cantacts1 + ", cantacts2=" + cantacts2 + ", areaID=" + areaID + ", area=" + area + ", clazz=" + clazz
+				+ "]";
 	}
+
+
 	
 	
 

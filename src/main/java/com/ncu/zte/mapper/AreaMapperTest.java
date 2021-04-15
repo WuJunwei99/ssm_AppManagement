@@ -33,11 +33,10 @@ public class AreaMapperTest {
 	}
 
 	@Test
-	public void testSelectByPrimaryKey() {
-//		List<Province> p = areaMapper.selectAll();
-//		for(Province pe : p){
-//			System.out.println(pe.getProvince());
-//		}
+	public void testselectByAreaID() {
+	Long l = (long) 140729;
+	Area p = areaMapper.selectByAreaID(l);
+	System.out.println(p.toString());
 	}
 
 	@Test

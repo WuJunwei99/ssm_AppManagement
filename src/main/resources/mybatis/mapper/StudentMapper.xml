@@ -11,7 +11,11 @@
 
 	
 	<select id="selectStudentByName" resultType="Student">
-		select * from student where name=#{name}
+		select * from student s,area a where s.area_id = a.areaID and name=#{name}
+	</select>
+	
+	<select id="selectStudentByStuNum" resultType="Student">
+		select * from student s,area a where s.area_id = a.areaID and student_num = #{studentNum}
 	</select>
 	
   </mapper>

@@ -28,7 +28,7 @@ public class Contract {
 	public void setContractId(String contractId) {
 		this.contractId = contractId;
 	}
-	public Long getStudengId() {
+	public Long getStudentNum() {
 		return studentNum;
 	}
 	public void setStudentNum(Long studentNum) {

@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.ncu.zte.beans.Clazz;
 import com.ncu.zte.beans.Contract;
 import com.ncu.zte.beans.Student;
 
@@ -17,12 +18,16 @@ public class UserMapperTest {
 
     private StudentMapper userMapper;
     private ContractMapper contractMapper;
+    private ClazzMapper clazzMapper;
+    
 	@Before
 	public void setUp() throws Exception {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring/applicationContext.xml",
 				"spring/applicationContext-mybatis.xml");
 		this.userMapper = context.getBean(StudentMapper.class);
 		this.contractMapper = context.getBean(ContractMapper.class);
+		this.clazzMapper = context.getBean(ClazzMapper.class);
+		
 	}
 
 	@Test
@@ -45,5 +50,11 @@ public class UserMapperTest {
 	System.out.println(student.toString());
 	}
 	
-
+	@Test
+	public void testFindClazzByClasse() {
+	Long classId = (long) 1;
+	Clazz clazz = clazzMapper.selectByClassId(classId);
+	System.out.println(clazz.toString());
+	}
+	
 }

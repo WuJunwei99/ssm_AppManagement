@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ncu.zte.mapper.ClazzMapper">
+
+	<insert id="insert" useGeneratedKeys="true" keyColumn="id"
+		keyProperty="id">
+		INSERT INTO tb_class (classe,grade,class_name,)
+			VALUES(#{classe},#{grade},#{className},#{majorId});
+	</insert>
+	
+  	<select id="selectByClassId" resultType="Clazz">
+		select * from tb_class c,major m,department d where m.major_id=c.major_id and m.department_id=d.department_id and class_id=#{classId}
+	</select>
+	
+  	<select id="selectByParent" resultType="Clazz">
+		select * from tb_class where major_id =# {majorId}
+	</select>
+
+  </mapper>

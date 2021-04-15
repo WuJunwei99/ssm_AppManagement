@@ -51,7 +51,7 @@ public class ContractServiceImplTest {
 	
 	@Test
 	public void  testFindContractByName(){
-		List<Contract> Contract = (this.ContractService).selectContractByStudentnum("8002117187");
+		List<Contract> Contract = (this.ContractService).selectContractByStudentnum("8003117111");
 		for(Contract s : Contract)
 			System.out.println(s.toString());
 		}

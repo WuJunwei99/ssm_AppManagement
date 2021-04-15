@@ -11,5 +11,7 @@ public interface StudentMapper extends BaseMapper<Student,String>{
 	
 	Student selectStudentByName(String name);
 	
+	Student selectStudentByStuNum(Long studentNum);
+	
 	
 }
