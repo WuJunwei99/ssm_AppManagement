@@ -14,16 +14,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ncu.zte.beans.Appinfo;
 import com.ncu.zte.beans.Student;
 import com.ncu.zte.service.StudentService;
 
 @Controller
-@RequestMapping("Student")
+@RequestMapping("Students")
 public class StudentController {
 
 	@Autowired
-	private StudentService StudentService;
-
+	private StudentService studentService;
+	
+    /**
+     * 请求路径：/list
+     * 方法返回值：Map<String, Object>
+     * 参数：
+     */
+    @RequestMapping("list")
+    @ResponseBody		//把Controller方法返回值转化为JSON，称为序列化
+    public Map<String, Object> queryStudentAll(){
+    	Map<String, Object> map = new HashMap<>();
+    	//查询用户列表List<Student>
+    	List<Student> studentList = this.studentService.queryStudentAll();
+    	map.put("rows",studentList);
+    	return map;
+    }
+    
 	//@RequestMapping("save")
 	@ResponseBody
 	public Map<String, String> saveStudent(@Valid Student Student,BindingResult result){
@@ -37,7 +53,7 @@ public class StudentController {
             return map;
         }
         
-	   	Boolean flag = this.StudentService.insertStudent(Student);
+	   	Boolean flag = this.studentService.insertStudent(Student);
 	   	if(flag){
 		   	map.put("status", "200");
 	   	}else{
@@ -47,19 +63,6 @@ public class StudentController {
 	   	return map;
 	}
 	
-    @RequestMapping("list")
-    @ResponseBody		//把Controller方法返回值转化为JSON，称为序列化
-    public Map<String, Object> queryStudentAll(){
-    	
-    	Map<String, Object> map = new HashMap<>();
-    	//查询总条数
-    	Long total = this.StudentService.queryTotal();
-    	map.put("total", total);
-    	//查询用户列表List<Student>
-    	List<Student> Students = this.StudentService.queryStudentAll();
-    	map.put("rows",Students);
-    	return map;
-    }
     
     /**
      * 请求路径：/edit
@@ -80,7 +83,7 @@ public class StudentController {
         }
         
         // 调用StudentService的新增方法
-        Boolean b = this.StudentService.editStudent(Student);
+        Boolean b = this.studentService.editStudent(Student);
         if (b) {
             map.put("status", 200);
         }else{
@@ -123,7 +126,7 @@ public class StudentController {
         
         // 调用StudentService的新增方法
         System.out.println(Student);
-	   	Student Student1 = this.StudentService.selectStudentByName(Student.getName());
+	   	Student Student1 = this.studentService.selectStudentByName(Student.getName());
 	   	if(Student1==null){
 	   		map.put("status", "100");
 	   	}else{
