@@ -8,6 +8,7 @@ public class Clazz {
 	private int grade;				//年级
 	private String className;		//班级名
 	private String majorId;		//专业编号
+	private String departmentId;	//院系名
 
 	
 	public String getDepartmentName() {
@@ -53,6 +54,12 @@ public class Clazz {
 	}
 	public void setMajorId(String majorId) {
 		this.majorId = majorId;
+	}
+	public String getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
 	}
 	@Override
 	public String toString() {

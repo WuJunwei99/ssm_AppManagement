@@ -1,5 +1,7 @@
 package com.ncu.zte.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +10,12 @@ import javax.validation.Valid;
 
 import org.junit.validator.PublicClassValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,11 +31,15 @@ public class ContractController {
 	@Autowired
 	private ContractService ContractService;
 
+	@InitBinder
+	public void initBinder(ServletRequestDataBinder binder){
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
 	
-	
-	//@RequestMapping("save")
+	@RequestMapping("save")
 	@ResponseBody
-	public Map<String, String> saveContract(@Valid Contract Contract,BindingResult result){
+	public Map<String, String> saveContract(@RequestBody Contract contract,BindingResult result){
 	   	
 	   	Map<String, String> map = new HashMap<>();
 	   	
@@ -39,8 +49,7 @@ public class ContractController {
             map.put("status", "500");
             return map;
         }
-        
-	   	Boolean flag = this.ContractService.insertContract(Contract);
+	   	Boolean flag = this.ContractService.insertContract(contract);
 	   	if(flag){
 		   	map.put("status", "200");
 	   	}else{
@@ -50,15 +59,22 @@ public class ContractController {
 	   	return map;
 	}
 	
+	@RequestMapping("find")
+	@ResponseBody
+	public Map<String, Object> findContract(String id){
+	   	Map<String, Object> map = new HashMap<>();
+	   	Contract contract = this.ContractService.selectContractById(id);
+	   	map.put("contract",contract);
+	   	return map;
+	}
+	
+	
     @RequestMapping("list")
     @ResponseBody		//把Controller方法返回值转化为JSON，称为序列化
     public Map<String, Object> queryContractAll(){
     	
     	Map<String, Object> map = new HashMap<>();
-    	//查询总条数
-    	Long total = this.ContractService.queryTotal();
-    	map.put("total", total);
-    	//查询用户列表List<Contract>
+    	//查询贷款信息列表List<Contract>
     	List<Contract> Contracts = this.ContractService.queryContractAll();
     	map.put("rows",Contracts);
     	return map;

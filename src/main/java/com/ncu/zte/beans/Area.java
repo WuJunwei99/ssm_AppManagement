@@ -7,11 +7,6 @@ import java.io.Serializable;
  * 
  */
 public class Area implements Serializable {
-    @Override
-	public String toString() {
-		return "Area [id=" + id + ", areaID=" + areaID + ", parent=" + parent + ", area=" + area + ", city=" + city
-				+ ", province=" + province + "]";
-	}
 	/**
      * 序列化.
      */
@@ -23,7 +18,7 @@ public class Area implements Serializable {
     /**
      * areaId.
      */
-    private String areaID;
+    private String areaId;
     /**
      * 市.
      */
@@ -34,8 +29,16 @@ public class Area implements Serializable {
     private String area;
     private String city;
     private String province;
+    private String provinceId;
+    private String cityId;
     
-    public String getCity() {
+    public String getProvinceId() {
+		return provinceId;
+	}
+	public void setProvinceId(String provinceId) {
+		this.provinceId = provinceId;
+	}
+	public String getCity() {
 		return city;
 	}
 	public void setCity(String city) {
@@ -47,12 +50,7 @@ public class Area implements Serializable {
 	public void setProvince(String province) {
 		this.province = province;
 	}
-	public String getAreaID() {
-        return areaID;
-    }
-    public void setAreaID(String areaID) {
-        this.areaID = areaID;
-    }
+
     public Long getId() {
         return id;
     }
@@ -71,4 +69,22 @@ public class Area implements Serializable {
     public void setArea(String area) {
         this.area = area;
     }
+	public String getAreaId() {
+		return areaId;
+	}
+	public void setAreaId(String areaId) {
+		this.areaId = areaId;
+	}
+	public String getCityId() {
+		return cityId;
+	}
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
+	@Override
+	public String toString() {
+		return "Area [id=" + id + ", areaId=" + areaId + ", parent=" + parent + ", area=" + area + ", city=" + city
+				+ ", province=" + province + ", provinceId=" + provinceId + ", cityId=" + cityId + "]";
+	}
+
 }

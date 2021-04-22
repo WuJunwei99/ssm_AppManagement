@@ -17,6 +17,7 @@ public interface ContractService {
 	public Boolean deleteByIds(String ids);
 
 	public List<Contract> selectContractByStudentnum(String studentNum);
-
+	
+	public Contract selectContractById(String id);
 	
 }

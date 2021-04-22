@@ -8,7 +8,7 @@ import com.ncu.zte.beans.Major;
 
 public interface ClazzMapper extends BaseMapper<Clazz,String>{
 	
-	List<Clazz> selectByParent(String parent);
+	List<Clazz> selectByParent(String majorId);
 	
 	Clazz selectByClassId(Long classId);
 }

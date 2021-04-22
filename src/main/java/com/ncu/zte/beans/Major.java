@@ -1,31 +1,32 @@
 package com.ncu.zte.beans;
 
 public class Major {
-	private String major_id;		//专业编号
-	private String major_name;		//专业名称
-	private String department_id;	//所属院系ID
-	public String getMajor_id() {
-		return major_id;
+	private String majorId;		//专业编号
+	private String majorName;		//专业名称
+	private String departmentId;	//所属院系ID
+	public String getMajorId() {
+		return majorId;
 	}
-	public void setMajor_id(String major_id) {
-		this.major_id = major_id;
+	public void setMajorId(String majorId) {
+		this.majorId = majorId;
 	}
-	public String getMajor_name() {
-		return major_name;
+	public String getMajorName() {
+		return majorName;
 	}
-	public void setMajor_name(String major_name) {
-		this.major_name = major_name;
+	public void setMajorName(String majorName) {
+		this.majorName = majorName;
 	}
-	public String getDepartment_id() {
-		return department_id;
+	public String getDepartmentId() {
+		return departmentId;
 	}
-	public void setDepartment_id(String department_id) {
-		this.department_id = department_id;
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
 	}
 	@Override
 	public String toString() {
-		return "Major [major_id=" + major_id + ", major_name=" + major_name + ", department_id=" + department_id + "]";
+		return "Major [majorId=" + majorId + ", majorName=" + majorName + ", departmentId=" + departmentId + "]";
 	}
+
 
 	
 }

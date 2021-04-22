@@ -10,6 +10,6 @@ import com.ncu.zte.beans.Province;
 public interface MajorMapper extends BaseMapper<Major,String>{
 	
 	
-	List<Major> selectByParent(String parent);
+	List<Major> selectByParent(String departmentId);
 	
 }
