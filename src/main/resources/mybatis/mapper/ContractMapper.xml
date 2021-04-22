@@ -13,4 +13,8 @@
 		select * from contract where student_num=#{studentNum}
 	</select>
 	
+	<select id="selectContractById" resultType="Contract">
+		select * from contract where id=#{id}
+	</select>
+	
   </mapper>

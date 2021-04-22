@@ -6,7 +6,7 @@
   
 
   	<select id="selectByPrimaryKey" resultType="Department">
-		select * from department where department_id = #{DepartmentId}
+		select * from department where department_id = #{departmentId}
 	</select>
 	
 	 <select id="selectAll" resultType="Department">

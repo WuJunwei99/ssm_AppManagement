@@ -7,9 +7,10 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-
+	<mvc:view-controller path="/user/add_contract" view-name="add_contract"/>
 	<mvc:view-controller path="/user/tables_students" view-name="tables_students"/>
-	<mvc:view-controller path="/user/page/add" view-name="user-add"/>
+	<mvc:view-controller path="/user/tables_contracts" view-name="tables_contracts"/>
+	<mvc:view-controller path="/user/edit_contract" view-name="edit_contract"/>
 	<mvc:view-controller path="/user/page/edit" view-name="appinfo-edit"/>
 	<mvc:view-controller path="/user/login" view-name="register_login"/>
 	<mvc:view-controller path="/appinfo/page/edit" view-name="appinfo-edit"/>

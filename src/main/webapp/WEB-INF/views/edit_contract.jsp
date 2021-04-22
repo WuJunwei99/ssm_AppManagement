@@ -355,11 +355,14 @@
                           <div class="form-group row">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">与联系人1关系<span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 ">
-                              <div id="relationship1" style="margin-top:7px"> 
+                              <div id="relationship1" style="margin-top:7px" > 
                                 <p style="margin-top:-10px">
-                                  <div class="col-md-2 col-sm-2 ">父亲<input type="radio" class="flat" name="relationship1"  id="contacts1F"value="父亲" checked="" required /></div>
-                                  <div class="col-md-2 col-sm-2 ">母亲<input type="radio" class="flat" name="relationship1"  id="contacts1M"value="母亲" /></div>
-                                  <div class="col-md-2 col-sm-2 ">其他<input type="radio" class="flat" name="relationship1"  id="contacts1O"value="其他" /></div>
+                                  <div class="col-md-2 col-sm-2 " onclick="changeRelationship1()">父亲<input type="radio" class="flat" name="relationship1"  id="contacts1F"value="父亲"onclick="changeRelationship1()"/></div>
+                                  <div class="col-md-2 col-sm-2 " onclick="changeRelationship1()">母亲<input type="radio"class="flat" name="relationship1"  id="contacts1M"value="母亲" onclick="changeRelationship1()" /></div>
+                                  <div class="col-md-2 col-sm-2 " onclick="changeRelationship1()">其他<input type="radio"class="flat" name="relationship1"  id="contacts1O"value="其他" onclick="changeRelationship1()" /></div>
+                                  <div class="col-md-3 col-sm-3 " style="margin-top:-6px;" style="display: none;">
+                                  <input type="text" id="relationship1Other" required="required" class="form-control" name="contractId">
+                                  </div>
                                 </p>
                               </div>
                             </div>
@@ -391,8 +394,11 @@
                               <div id="relationship2" style="margin-top:7px"> 
                                 <p style="margin-top:-10px">
                                   <div class="col-md-2 col-sm-2 ">父亲<input type="radio" class="flat" name="relationship2"  id="contacts2F"value="父亲"/></div>
-                                  <div class="col-md-2 col-sm-2 ">母亲<input type="radio" class="flat" name="relationship2" id="contacts2M"value="母亲" checked="" required /></div>
+                                  <div class="col-md-2 col-sm-2 ">母亲<input type="radio" class="flat" name="relationship2" id="contacts2M"value="母亲" /></div>
                                   <div class="col-md-2 col-sm-2 ">其他<input type="radio" class="flat" name="relationship2" id="contacts2O"value="其他" /></div>
+                                  <div class="col-md-3 col-sm-3 " style="margin-top:-6px;margin-left:-30px" style="display: none;">
+                                    <input type="text" id="relationship2Other" required="required" class="form-control" name="contractId">
+                                  </div>
                                 </p>
                               </div>
                             </div>
@@ -426,9 +432,9 @@
                             <div class="col-md-6 col-sm-6 ">
                               <div id="contractBankType" style="margin-top:7px"> 
                                 <p style="margin-top:-10px">
-                                  <div class="col-md-4 col-sm-4 ">国家开发银行<input type="radio" class="flat" id="contractBankType0"   value="0"/></div>
-                                  <div class="col-md-4 col-sm-4 ">农村信用合作联社<input type="radio" class="flat" id="contractBankType1" name="contractBankType1" value="1"/></div>
-                                  <div class="col-md-4 col-sm-4 ">特殊银行<input type="radio" class="flat" id="contractBankType2"  value="2" /></div>
+                                  <div class="col-md-4 col-sm-4 ">国家开发银行<input type="radio" class="flat" name="contractBankType" id="contractBankType0"   value="0"/></div>
+                                  <div class="col-md-4 col-sm-4 ">农村信用合作联社<input type="radio" class="flat" name="contractBankType"id="contractBankType1" value="1"/></div>
+                                  <div class="col-md-4 col-sm-4 ">特殊银行<input type="radio" class="flat" name="contractBankType"id="contractBankType2"  value="2" /></div>
                                 </p>
                               </div>
                             </div>
@@ -437,7 +443,7 @@
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">合同编号<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                              <input type="text" id="contractId" required="required" class="form-control name="contractId">
+                              <input type="text" id="contractId" required="required" class="form-control" name="contractId">
                             </div>
                           </div>
                           <div class="form-group row">
@@ -472,7 +478,9 @@
                             <div class="col-md-6 col-sm-6 ">
                               <input id="approveDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" name="approveDate">
                               <script>
+                                
                                 function timeFunctionLong(input) {
+                                  console.log(input);
                                   setTimeout(function() {
                                     input.type = 'text';
                                   }, 60000);
@@ -485,13 +493,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 ">
                               <input id="beginDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" name="beginDate">
-                              <script>
-                                function timeFunctionLong(input) {
-                                  setTimeout(function() {
-                                    input.type = 'text';
-                                  }, 60000);
-                                }
-                              </script>
+     
                             </div>
                           </div>
                           <div class="form-group row">
@@ -499,13 +501,7 @@
                             </label>
                             <div class="col-md-6 col-sm-6 ">
                               <input id="endDate" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" name="endDate">
-                              <script>
-                                function timeFunctionLong(input) {
-                                  setTimeout(function() {
-                                    input.type = 'text';
-                                  }, 60000);
-                                }
-                              </script>
+   
                             </div>
                           </div>
                         </form>
@@ -526,7 +522,7 @@
       </div>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/jutils-src"></script>
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -546,7 +542,24 @@
 	<!-- Parsley -->
 	<script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
   <script type="text/javascript">
-
+$("#contacts1F").on('ifChecked', function(event){
+  $("#relationship1Other").parent("div").attr("style","display:none;");
+});
+$("#contacts1M").on('ifChecked', function(event){
+  $("#relationship1Other").parent("div").attr("style","display:none;");
+});
+$("#contacts1O").on('ifChecked', function(event){
+  $("#relationship1Other").parent("div").attr("style","display:block;");
+});
+$("#contacts2F").on('ifChecked', function(event){
+  $("#relationship2Other").parent("div").attr("style","display:none;");
+});
+$("#contacts2M").on('ifChecked', function(event){
+  $("#relationship2Other").parent("div").attr("style","display:none;");
+});
+$("#contacts2O").on('ifChecked', function(event){
+  $("#relationship2Other").parent("div").attr("style","display:block;");
+});
 window.onload=function(){
     getContract();
   }
@@ -566,12 +579,14 @@ function getProvince() {
 		}
 	});
 }
+
+
  function getContract(){		
         $.ajax({
           type:"GET",		
           url:"../Contract/find",	
           data : {
-            id :'69',
+            id :'28',
           },		
           dataType:"json",
           async:false,
@@ -585,8 +600,8 @@ function getProvince() {
             var cantacts2 = "";
             cantacts1 = student.cantacts1;
             cantacts2 = student.cantacts2;
-            console.log(contract);
-            console.log(student);
+            console.log("contract:"+contract);
+            console.log("student:"+student);
             var  studentNum = "";
             var  name= "";
             var  idCard= "";
@@ -640,50 +655,15 @@ function getProvince() {
             lender= contract.lender;
             branchLender= contract.branchLender;
             agent= contract.agent;
-            approveDate= contract.approveDate;
-            beginDate= contract.beginDate;
-            endDate= contract.endDate;
+            approveDate= jutils.formatDate(new Date(contract.approveDate),"YYYY-MM-DD");
+            beginDate= jutils.formatDate(new Date(contract.beginDate),"YYYY-MM-DD");
+            endDate= jutils.formatDate(new Date(contract.endDate),"YYYY-MM-DD");
             contractBankType = contract.contractBankType;
             if(area!=null){
             provinceId = area.provinceId;
             cityId = area.cityId;
             areaId = area.areaId;
             }
-
-
-            console.log(contract);
-            console.log(student);
-            document.getElementById("studentNum").value = studentNum;
-            document.getElementById("name").value = student.name;
-            document.getElementById("idCard").value = student.idCard;
-            document.getElementById("nation").value = student.nation;
-            document.getElementById("phone").value = student.phone;
-            document.getElementById("qq").value = student.qq;
-            document.getElementById("candidateNum").value = student.candidateNum;
-            document.getElementById("tuition").value = student.tuition;
-            document.getElementById("hotelExpense").value = student.hotelExpense;
-            document.getElementById("gender").value = student.sex;
-            //联系人
-            if(cantacts1.contractBankType=="0"){
-              $("contacts1F").prop("checked",true);
-            }else if(cantacts1.contractBankType=="1"){
-              $("contacts1M").prop("checked",true);
-            }else{
-              $("contacts1O").prop("checked",true);
-            }
-            document.getElementById("name1").value = cantacts1.name;
-            document.getElementById("phone1").value = cantacts1.phone;
-            document.getElementById("workAddress1").value = cantacts1.work;
-            if(cantacts2.relationship=="父亲"){
-              $("contacts2F").prop("checked",true);
-            }else if(cantacts2.relationship=="母亲"){
-              $("contacts2M").prop("checked",true);
-            }else{
-              $("contacts2O").prop("checked",true);
-            }
-            document.getElementById("name2").value = cantacts2.name;
-            document.getElementById("phone2").value = cantacts2.phone;
-            document.getElementById("workAddress2").value = cantacts2.work;
 
             document.getElementById("studentNum").value = studentNum;
             document.getElementById("name").value = name;
@@ -695,29 +675,51 @@ function getProvince() {
             document.getElementById("tuition").value = tuition;
             document.getElementById("hotelExpense").value = hotelExpense;
             document.getElementById("gender").value = sex;
+            $("#genderM").parent("div").attr("class","iradio_flat-green");
+            $("#genderF").parent("div").attr("class","iradio_flat-green");
+            if(sex=="男"){
+              $("#genderM").parent("div").attr("class","iradio_flat-green checked");
+            }else if(sex=="女"){
+              $("#genderF").parent("div").attr("class","iradio_flat-green checked");
+            }
             //联系人
-            if(relationship1=="0"){
-              $("#contacts1F").prop("checked",true);
-            }else if(relationship1=="1"){
-              $("#contacts1M").prop("checked",true);
-            }else{
-              $("#contacts1O").prop("checked",true);
+            $("#contacts1F").parent("div").attr("class","iradio_flat-green");
+            $("#contacts2M").parent("div").attr("class","iradio_flat-green");
+            if(relationship1=="父亲"){
+              $("#relationship1Other").parent("div").attr("style","display:none;");
+              $("#contacts1F").parent("div").attr("class","iradio_flat-green checked");
+            }else if(relationship1=="母亲"){
+              $("#relationship1Other").parent("div").attr("style","display:none;");
+              $("#contacts1M").parent("div").attr("class","iradio_flat-green checked");
+            }else if(relationship1==""){
+            }
+            else{
+              $("#relationship1Other").parent("div").attr("style","display:block;");
+              document.getElementById("relationship1Other").value = relationship1;
+              $("#contacts1O").parent("div").attr("class","iradio_flat-green checked");
+
             }
             document.getElementById("name1").value = name1;
             document.getElementById("phone1").value = phone1;
             document.getElementById("workAddress1").value = work1;
             if(relationship2=="父亲"){
-              $("#contacts2F").prop("checked",true);
+              $("#relationship2Other").parent("div").attr("style","display:none;");
+              $("#contacts2F").parent("div").attr("class","iradio_flat-green checked");
             }else if(relationship2=="母亲"){
-              $("#contacts2M").prop("checked",true);
+              $("#relationship2Other").parent("div").attr("style","display:none;");
+              $("#contacts2M").parent("div").attr("class","iradio_flat-green checked");
+            }else if(relationship1==""){
+
             }else{
-              $("#contacts2O").prop("checked",true);
+              $("#relationship2Other").parent("div").attr("style","display:block;");
+              document.getElementById("relationship2Other").value = relationship2;
+              $("#contacts2O").parent("div").attr("class","iradio_flat-green checked");
             }
             document.getElementById("name2").value = name2;
             document.getElementById("phone2").value = phone2;
             document.getElementById("workAddress2").value = work2;
 
-            $("#contractBankType1").prop("checked",true);
+            $("#contractBankType1").prop("selected",true)
             document.getElementById("contractId").value = contractId;
             document.getElementById("amount").value = amount;
             document.getElementById("lender").value = lender;
@@ -736,13 +738,11 @@ function getProvince() {
                 getMajor();
                             //合同信息
             if(contractBankType=="0"){
-              $("#contractBankType0").prop("checked",true);
+              $("#contractBankType0").parent("div").attr("class","iradio_flat-green checked");
             }else if(contractBankType=="1"){
-              console.log("111");
-              console.log($("#contractBankType1"));
-              $("#contractBankType1").prop("selected",true)
+              $("#contractBankType1").parent("div").attr("class","iradio_flat-green checked");
             }else{
-              $("#contractBankType2").prop("checked",true);
+              $("#contractBankType2").parent("div").attr("class","iradio_flat-green checked");
             }
               },100);
               setTimeout(function(){
@@ -752,9 +752,6 @@ function getProvince() {
                   getClazz();
                 },200);
               setTimeout(function(){
-                console.log("classId"+clazz.classId);
-                console.log($("#selclazz"));
-                console.log($("#"+clazz.classId));
                 $("#"+areaId).prop("selected",true);
                 $("#classId"+clazz.classId).prop("selected",true);
               },300);

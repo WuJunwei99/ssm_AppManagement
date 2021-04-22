@@ -307,19 +307,19 @@
                     <table id="studentList" class="table table-striped table-bordered" >
                       <thead>
                         <tr>
+                          <th>贷款类型</th>
+                          <th>贷款银行</th>
                           <th>学号</th>
                           <th>姓名</th>
-                          <th>身份证</th>
-                          <th>性别</th>
-                          <th>民族</th>
-                          <th>考生号</th>
                           <th>学院</th>
                           <th>专业</th>
                           <th>班级</th>
-                          <th>联系电话</th>
-                          <th>QQ</th>
-                          <th>学费</th>
-                          <th>住宿费</th>
+                          <th>合同号</th>
+                          <th>金额</th>
+                          <th>贷款机构</th>
+                          <th>分支机构</th>
+                          <th>经办人</th>
+                          <th>批准日期</th>
                         </tr>
                       </thead>
 
@@ -410,33 +410,65 @@
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jutils-src"></script>
     <script type="text/javascript">
       $(function (){		
         $.ajax({
           type:"GET",		
-          url:"../Students/list",			
+          url:"../Contract/list",			
           dataType:"json",
           async:false,
           success:function(data){			
           var tbody=$('<tbody></tbody>');
           for(var i=0;i<data.rows.length;i++){
-            var val=data['rows'][i];
+            var contract=data['rows'][i];
+            console.log(contract);
+            var student = contract.student;
+            console.log(student);
+            var clazz = student.clazz;
             var tr=$('<tr></tr>');
-            var clazz = val.clazz;
             var departmentName = "";
             var majorName = "";
             var classe = "";
+            var  contractId= "";
+            var  agent= "";
+            var approveDate = "";
+            var contractType = "";
+            var contractBankType = "";
             if(clazz!=null){
               departmentName = clazz.departmentName;
               majorName = clazz.majorName;
               classe = clazz.classe;
               grade = clazz.grade;
             }
-            tr.append('<td>'+ val.studentNum + '</td>' + '<td>'+ val.name + '</td>'+ '<td>'+ val.idCard + '</td>'
-            + '<td>'+ val.sex + '</td>'+ '<td>'+ val.nation + '</td>'+ '<td>'+ val.candidateNum + '</td>'
+            if(contract.contractId!=null){
+              contractId = contract.contractId;
+            }
+            if(contract.agent!=null){
+              agent = contract.agent;
+            }
+            if(contract.approveDate!=null){
+              approveDate = jutils.formatDate(new Date(contract.approveDate),"YYYY-MM-DD");
+            }
+            if(contract.contractType=='0'){
+              contractType="新生首贷";
+            }else if(contract.contractType=='1'){
+              contractType="老生首贷";
+            }else if(contract.contractType=='2'){
+              contractType="续贷";
+            }
+            if(contract.contractBankType=='0'){
+              contractBankType="国家开发银行";
+            }else if(contract.contractBankType=='1'){
+              contractBankType="农村信用合作联社";
+            }else if(contract.contractBankType=='2'){
+              contractBankType="特殊银行贷款";
+            }
+            tr.append('<td>'+ contractType + '</td>'+ '<td>'+ contractBankType + '</td>'+ '<td>'+ student.studentNum + '</td>' 
+            + '<td>'+ student.name + '</td>'
             + '<td>'+ departmentName + '</td>'+ '<td>'+ majorName + '</td>'+ '<td>'+ grade+"级"+ classe+"班" + '</td>'
-            + '<td>'+ val.phone + '</td>'+ '<td>'+ val.qq + '</td>'+ '<td>'+ val.tuition + '</td>'+ '<td>'+ val.hotelExpense + '</td>');
+            + '<td>'+ contractId + '</td>'+ '<td>'+ contract.amount + '</td>'
+            + '<td>'+ contract.lender + '</td>'+ '<td>'+ contract.branchLender + '</td>'+ '<td>'+ contract.agent + '</td>'+ '<td>'+ approveDate + '</td>');
             tbody.append(tr);
             }
             $('#studentList tbody').replaceWith(tbody);

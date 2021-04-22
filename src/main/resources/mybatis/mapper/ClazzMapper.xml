@@ -15,7 +15,7 @@
 	</select>
 	
   	<select id="selectByParent" resultType="Clazz">
-		select * from tb_class where major_id =# {majorId}
+		select * from tb_class where major_id =#{majorId}
 	</select>
 
   </mapper>
