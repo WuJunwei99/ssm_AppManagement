@@ -304,7 +304,7 @@
                       <div class="row">
                           <div class="col-sm-12">
                             <div class="card-box table-responsive">
-                    <table id="studentList" class="table table-striped table-bordered" >
+                    <table id="contractList" class="table table-striped table-bordered" >
                       <thead>
                         <tr>
                           <th>贷款类型</th>
@@ -320,6 +320,7 @@
                           <th>分支机构</th>
                           <th>经办人</th>
                           <th>批准日期</th>
+                          <th>操作</th>
                         </tr>
                       </thead>
 
@@ -328,6 +329,26 @@
 
                       </tbody>
                     </table>
+                    <div  class="c-pages">
+                      <div class="cp-item">
+                          <span>共</span>
+                          <span id="cp-count">0</span>
+                          <span>条</span>
+                          <button id="home">首页</button>
+                          <button id="prev">上页</button>
+                          <button id="next">下页</button>
+                          <button id="last">尾页</button>
+                          <button id="goTo">转到</button>
+                          <input type="number" id="goToPage" width="5" />
+                          <span>页</span>
+                      </div>
+                      <div class="cp-item">
+                          <span id="curr-page">1</span>
+                          <span>/</span>
+                          <span id="total-page">1</span>
+                      </div>
+
+                  </div>
                   </div>
                   </div>
               </div>
@@ -422,9 +443,7 @@
           var tbody=$('<tbody></tbody>');
           for(var i=0;i<data.rows.length;i++){
             var contract=data['rows'][i];
-            console.log(contract);
             var student = contract.student;
-            console.log(student);
             var clazz = student.clazz;
             var tr=$('<tr></tr>');
             var departmentName = "";
@@ -468,15 +487,148 @@
             + '<td>'+ student.name + '</td>'
             + '<td>'+ departmentName + '</td>'+ '<td>'+ majorName + '</td>'+ '<td>'+ grade+"级"+ classe+"班" + '</td>'
             + '<td>'+ contractId + '</td>'+ '<td>'+ contract.amount + '</td>'
-            + '<td>'+ contract.lender + '</td>'+ '<td>'+ contract.branchLender + '</td>'+ '<td>'+ contract.agent + '</td>'+ '<td>'+ approveDate + '</td>');
+            + '<td>'+ contract.lender + '</td>'+ '<td>'+ contract.branchLender + '</td>'+ '<td>'+ contract.agent + '</td>'+ '<td>'+ approveDate + '</td>'
+            + '<td><a href="#" class="btn btn-sm btn-primary"> View </a>'
+            + '<a href="#" class="btn btn-sm btn-primary" id="editContract"> Edit </a>'
+            + '<a href="#" class="btn btn-sm btn-primary"> Delete </a></td>');
             tbody.append(tr);
             }
-            $('#studentList tbody').replaceWith(tbody);
+            $('#contractList tbody').replaceWith(tbody);
           }
           
         });
         
       });
+      $("#editContract").click(function (e) { 
+
+        var id = $(e.target); 
+        console.log(id);
+        console.log($(this));
+        console.log($(this).parent("tr"));
+      //  var aa=$(this).attr("data-src");
+      //  console.log("值=="+aa);
+    })
+      function editContract(){
+        console.log($(this));
+        console.log($(this).parent("tr"));
+        $.ajax({
+          type:"GET",		
+          url:"../Contract/edit?id=",			
+          dataType:"json",
+          async:false,
+        
+      });
+      }
+      var newsLis = $("#contractList tbody").children();
+   // total news count
+   var count = newsLis.length;
+
+   // max count for one page
+   var ONE_PAGE_COUNT = 10;
+
+   // total pages
+   var totalPage = parseInt(count / ONE_PAGE_COUNT) + ((count % ONE_PAGE_COUNT) == 0? 0 : 1);
+
+   // init page
+   var currPage = 1;
+
+   // function used to set news count
+   function setUICount(count) {
+       if (count == undefined)
+           count = 0;
+       $("#cp-count").text(count);
+   }
+
+   // function used to set total pages
+   function setUIPages(totalPage) {
+       totalPage = Math.max(1, totalPage);
+       $("#total-page").text(totalPage)
+   }
+
+   // update curr page
+   function setUICurrPage(currPage) {
+       currPage = Math.max(1, currPage);
+       $("#curr-page").text(currPage);
+   }
+
+   // 传入显示的page参数，显示对应页面的新闻列表，隐藏其他列表
+   function scanAllForShow(page) {
+       // page at least 1 or max totalPage
+       page = Math.max(1, Math.min(totalPage, page));
+       for (var i = 0;i < count;i++) {
+           if (parseInt(i / ONE_PAGE_COUNT) + 1 == page)
+               $(newsLis[i]).attr("style", "");
+           else
+               $(newsLis[i]).attr("style", "display: none");
+       }
+   }
+
+   function homePage() {
+       currPage = 1;
+       scanAllForShow(currPage);
+       setUICurrPage(currPage);
+   }
+
+   function nexePage() {
+       var last = currPage;
+       if (last == totalPage)
+           return;
+
+       scanAllForShow(++currPage);
+
+       setUICurrPage(currPage);
+   }
+
+   function prevPage() {
+       var next = currPage;
+       if (next <= 1) 
+           return;
+
+       scanAllForShow(--currPage);
+
+       setUICurrPage(currPage);
+   }
+
+   function lastPage() {
+       currPage = totalPage;
+       scanAllForShow(currPage);
+       setUICurrPage(currPage);
+   }
+
+   function goToPage() {
+       var target = $("#goToPage").val();
+       if (target == undefined)
+           target = currPage;
+       target = Math.max(1, Math.min(totalPage, target));
+       currPage = target;
+       scanAllForShow(target);
+       setUICurrPage(currPage);
+       $("#goToPage").val("");
+   }
+
+   // 页面加载完成后调用此函数
+   function init() {
+       newsLis = $("#contractList tbody").children();
+       count = newsLis.length;
+       totalPage = parseInt(count / ONE_PAGE_COUNT) + ((count % ONE_PAGE_COUNT) == 0? 0 : 1);
+       currPage = 1;
+       setUICount(count);
+       setUIPages(totalPage);
+       setUICurrPage(currPage);
+       scanAllForShow(currPage);
+       // 注册点击函数
+       $("#home").click(homePage);
+       $("#prev").click(prevPage);
+       $("#next").click(nexePage);
+       $("#last").click(lastPage);
+       $("#goTo").click(goToPage);
+
+
+   }
+
+   window.onload = function() {
+       init();
+   }
       </script>
   </body>
 </html>

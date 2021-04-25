@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>DataTables | Gentelella</title>
+    <title>南昌大学贷款资助中心</title>
 
     <!-- Bootstrap -->
     <link href="cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -38,7 +38,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>贷款资助中心</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -180,97 +180,7 @@
           </div>
         </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <div class="nav toggle">
-                  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                </div>
-                <nav class="nav navbar-nav">
-                <ul class=" navbar-right">
-                  <li class="nav-item dropdown open" style="padding-left: 15px;">
-                    <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="images/img.jpg" alt="">John Doe
-                    </a>
-                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                        <a class="dropdown-item"  href="javascript:;">
-                          <span class="badge bg-red pull-right">50%</span>
-                          <span>Settings</span>
-                        </a>
-                    <a class="dropdown-item"  href="javascript:;">Help</a>
-                      <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                    </div>
-                  </li>
-  
-                  <li role="presentation" class="nav-item dropdown open">
-                    <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">6</span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <div class="text-center">
-                          <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
-                            <i class="fa fa-angle-right"></i>
-                          </a>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
+
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -304,7 +214,7 @@
                       <div class="row">
                           <div class="col-sm-12">
                             <div class="card-box table-responsive">
-                    <table id="studentList" class="table table-striped table-bordered" >
+                    <table id="studentList" class="table table-striped table-bordered" style="width:1600px">
                       <thead>
                         <tr>
                           <th>学号</th>
@@ -320,6 +230,7 @@
                           <th>QQ</th>
                           <th>学费</th>
                           <th>住宿费</th>
+                          <th>操作</th>
                         </tr>
                       </thead>
 
@@ -328,6 +239,26 @@
 
                       </tbody>
                     </table>
+                    <div  class="c-pages">
+                      <div class="cp-item">
+                          <span>共</span>
+                          <span id="cp-count">0</span>
+                          <span>条</span>
+                          <button id="home">首页</button>
+                          <button id="prev">上页</button>
+                          <button id="next">下页</button>
+                          <button id="last">尾页</button>
+                          <button id="goTo">转到</button>
+                          <input type="number" id="goToPage" width="5" />
+                          <span>页</span>
+                      </div>
+                      <div class="cp-item">
+                          <span id="curr-page">1</span>
+                          <span>/</span>
+                          <span id="total-page">1</span>
+                      </div>
+
+                  </div>
                   </div>
                   </div>
               </div>
@@ -335,37 +266,7 @@
                 </div>
               </div>
 
-              <div class="col-md-12 col-sm-12 ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Plus Table Design</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                          </div>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                      <div class="row">
-                          <div class="col-sm-12">
-                            <div class="card-box table-responsive">
-                    <p class="text-muted font-13 m-b-30">
-                      DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
-                    </p>
-					
-					
-                  </div>
-                </div>
-              </div>
+          
             </div>
                 </div>
               </div>
@@ -410,7 +311,8 @@
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
     <script type="text/javascript">
       $(function (){		
         $.ajax({
@@ -422,7 +324,7 @@
           var tbody=$('<tbody></tbody>');
           for(var i=0;i<data.rows.length;i++){
             var val=data['rows'][i];
-            var tr=$('<tr></tr>');
+            var tr=$('<tr id=”studentInfo”></tr>');
             var clazz = val.clazz;
             var departmentName = "";
             var majorName = "";
@@ -436,7 +338,12 @@
             tr.append('<td>'+ val.studentNum + '</td>' + '<td>'+ val.name + '</td>'+ '<td>'+ val.idCard + '</td>'
             + '<td>'+ val.sex + '</td>'+ '<td>'+ val.nation + '</td>'+ '<td>'+ val.candidateNum + '</td>'
             + '<td>'+ departmentName + '</td>'+ '<td>'+ majorName + '</td>'+ '<td>'+ grade+"级"+ classe+"班" + '</td>'
-            + '<td>'+ val.phone + '</td>'+ '<td>'+ val.qq + '</td>'+ '<td>'+ val.tuition + '</td>'+ '<td>'+ val.hotelExpense + '</td>');
+            + '<td>'+ val.phone + '</td>'+ '<td>'+ val.qq + '</td>'+ '<td>'+ val.tuition + '</td>'+ '<td>'+ val.hotelExpense + '</td>'
+            + '<td><a href="#" class="btn btn-sm btn-primary"> View </a>'
+            + '<a href="#" class="btn btn-sm btn-primary"> Edit </a>'
+            + '<a href="#" class="btn btn-sm btn-primary"> Delete </a></td>'
+                            
+            );
             tbody.append(tr);
             }
             $('#studentList tbody').replaceWith(tbody);
@@ -445,6 +352,120 @@
         });
         
       });
+
+      // li jquery object array
+var newsLis = $("#studentList tbody").children();
+// total news count
+var count = newsLis.length;
+
+// max count for one page
+var ONE_PAGE_COUNT = 10;
+
+// total pages
+var totalPage = parseInt(count / ONE_PAGE_COUNT) + ((count % ONE_PAGE_COUNT) == 0? 0 : 1);
+
+// init page
+var currPage = 1;
+
+// function used to set news count
+function setUICount(count) {
+    if (count == undefined)
+        count = 0;
+    $("#cp-count").text(count);
+}
+
+// function used to set total pages
+function setUIPages(totalPage) {
+    totalPage = Math.max(1, totalPage);
+    $("#total-page").text(totalPage)
+}
+
+// update curr page
+function setUICurrPage(currPage) {
+    currPage = Math.max(1, currPage);
+    $("#curr-page").text(currPage);
+}
+
+// 传入显示的page参数，显示对应页面的新闻列表，隐藏其他列表
+function scanAllForShow(page) {
+    // page at least 1 or max totalPage
+    page = Math.max(1, Math.min(totalPage, page));
+    for (var i = 0;i < count;i++) {
+        if (parseInt(i / ONE_PAGE_COUNT) + 1 == page)
+            $(newsLis[i]).attr("style", "");
+        else
+            $(newsLis[i]).attr("style", "display: none");
+    }
+}
+
+function homePage() {
+    currPage = 1;
+    scanAllForShow(currPage);
+    setUICurrPage(currPage);
+}
+
+function nexePage() {
+    var last = currPage;
+    if (last == totalPage)
+        return;
+
+    scanAllForShow(++currPage);
+
+    setUICurrPage(currPage);
+}
+
+function prevPage() {
+    var next = currPage;
+    if (next <= 1) 
+        return;
+
+    scanAllForShow(--currPage);
+
+    setUICurrPage(currPage);
+}
+
+function lastPage() {
+    currPage = totalPage;
+    scanAllForShow(currPage);
+    setUICurrPage(currPage);
+}
+
+function goToPage() {
+    var target = $("#goToPage").val();
+    if (target == undefined)
+        target = currPage;
+    target = Math.max(1, Math.min(totalPage, target));
+    currPage = target;
+    scanAllForShow(target);
+    setUICurrPage(currPage);
+    $("#goToPage").val("");
+}
+
+// 页面加载完成后调用此函数
+function init() {
+    newsLis = $("#studentList tbody").children();
+    count = newsLis.length;
+    totalPage = parseInt(count / ONE_PAGE_COUNT) + ((count % ONE_PAGE_COUNT) == 0? 0 : 1);
+    currPage = 1;
+    setUICount(count);
+    setUIPages(totalPage);
+    setUICurrPage(currPage);
+    scanAllForShow(currPage);
+    // 注册点击函数
+    $("#home").click(homePage);
+    $("#prev").click(prevPage);
+    $("#next").click(nexePage);
+    $("#last").click(lastPage);
+    $("#goTo").click(goToPage);
+
+
+}
+
+window.onload = function() {
+    init();
+}
+
+
       </script>
   </body>
 </html>
