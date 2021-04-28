@@ -580,13 +580,19 @@ function getProvince() {
 	});
 }
 
-
+function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
  function getContract(){		
+   console.log(getQueryString("id"));
         $.ajax({
           type:"GET",		
           url:"../Contract/find",	
           data : {
-            id :'28',
+            id :getQueryString("id"),
           },		
           dataType:"json",
           async:false,
@@ -645,11 +651,16 @@ function getProvince() {
             name1= cantacts1.name;
             phone1= cantacts1.phone;
             work1 = cantacts1.work;
+            relationship1= cantacts1.relationship;
+            if(cantacts2!=null){
             name2= cantacts2.name;
             phone2= cantacts2.phone;
             work2 = cantacts2.work;
-            relationship1= cantacts1.relationship;
             relationship2= cantacts2.relationship;
+            }
+
+
+
             contractId= contract.contractId;
             amount= contract.amount;
             lender= contract.lender;

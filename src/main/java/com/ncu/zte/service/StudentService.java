@@ -17,6 +17,8 @@ public interface StudentService {
 	public Boolean deleteByIds(String ids);
 
 	public Student selectStudentByName(String name);
+
+	public Student login(Student student);
 	
 	
 }

@@ -60,12 +60,13 @@ public class ContractController {
 	}
 	
 	@RequestMapping("find")
-	@ResponseBody
+    @ResponseBody
 	public Map<String, Object> findContract(String id){
 	   	Map<String, Object> map = new HashMap<>();
 	   	Contract contract = this.ContractService.selectContractById(id);
 	   	map.put("contract",contract);
 	   	return map;
+	   
 	}
 	
 	

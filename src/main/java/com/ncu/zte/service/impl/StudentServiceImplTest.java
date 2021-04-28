@@ -55,5 +55,13 @@ public class StudentServiceImplTest {
 			System.out.println(s.toString());
 		
 	}
-
+	@Test
+	public void  testLogin(){
+		Student s0 = new Student();
+		s0.setStudentNum("8002117187");
+		s0.setPassword("260036");
+		Student s = (this.studentService).login(s0);
+			System.out.println(s.toString());
+		
+	}
 }

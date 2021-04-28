@@ -12,7 +12,7 @@
 	<mvc:view-controller path="/user/tables_contracts" view-name="tables_contracts"/>
 	<mvc:view-controller path="/user/edit_contract" view-name="edit_contract"/>
 	<mvc:view-controller path="/user/page/edit" view-name="appinfo-edit"/>
-	<mvc:view-controller path="/user/login" view-name="register_login"/>
+	<mvc:view-controller path="/user/login" view-name="student_login"/>
 	<mvc:view-controller path="/appinfo/page/edit" view-name="appinfo-edit"/>
 	<mvc:view-controller path="/appinfo/page/add" view-name="appinfo-add"/>
 	<mvc:view-controller path="/app/apps" view-name="apps"/>
@@ -37,6 +37,10 @@
     <!-- 解决静态资源被拦截的问题 -->
     <mvc:default-servlet-handler/>
 	<mvc:resources mapping="/user/**" location="/WEB-INF/views/" />
+			<!-- 对哪些资源不起拦截作用 -->
+		<mvc:exclude-mapping path="/login.do" />
+		<!-- 哪个Bean是拦截器 -->
+		<bean class="cn.wolfcode.ssm.web.interceptor.CheckLoginInterceptor"/>
     <!-- 配置视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"></property>

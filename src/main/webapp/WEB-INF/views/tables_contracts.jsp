@@ -325,7 +325,7 @@
                       </thead>
 
 
-                      <tbody>
+                      <tbody >
 
                       </tbody>
                     </table>
@@ -433,6 +433,15 @@
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jutils-src"></script>
     <script type="text/javascript">
+
+
+    $('#contractList').on('click','a',function(event){
+      var tr = $(this).parents("tr");
+      console.log(tr);
+        var id = tr[0].cells[0].innerText;
+        console.log(id);
+        window.location.href="../user/edit_contract?id="+id;
+    })
       $(function (){		
         $.ajax({
           type:"GET",		
@@ -454,6 +463,7 @@
             var approveDate = "";
             var contractType = "";
             var contractBankType = "";
+            var id = contract.id;
             if(clazz!=null){
               departmentName = clazz.departmentName;
               majorName = clazz.majorName;
@@ -483,13 +493,13 @@
             }else if(contract.contractBankType=='2'){
               contractBankType="特殊银行贷款";
             }
-            tr.append('<td>'+ contractType + '</td>'+ '<td>'+ contractBankType + '</td>'+ '<td>'+ student.studentNum + '</td>' 
+            tr.append('<td style="display:none">'+ id + '</td>'+ '<td>'+ contractType + '</td>'+ '<td>'+ contractBankType + '</td>'+ '<td>'+ student.studentNum + '</td>' 
             + '<td>'+ student.name + '</td>'
             + '<td>'+ departmentName + '</td>'+ '<td>'+ majorName + '</td>'+ '<td>'+ grade+"级"+ classe+"班" + '</td>'
             + '<td>'+ contractId + '</td>'+ '<td>'+ contract.amount + '</td>'
             + '<td>'+ contract.lender + '</td>'+ '<td>'+ contract.branchLender + '</td>'+ '<td>'+ contract.agent + '</td>'+ '<td>'+ approveDate + '</td>'
-            + '<td><a href="#" class="btn btn-sm btn-primary"> View </a>'
-            + '<a href="#" class="btn btn-sm btn-primary" id="editContract"> Edit </a>'
+            + '<td ><a href="#" class="btn btn-sm btn-primary"> View </a>'
+            + '<a href="#" class="btn btn-sm btn-primary" > Edit </a>'
             + '<a href="#" class="btn btn-sm btn-primary"> Delete </a></td>');
             tbody.append(tr);
             }
@@ -499,26 +509,8 @@
         });
         
       });
-      $("#editContract").click(function (e) { 
 
-        var id = $(e.target); 
-        console.log(id);
-        console.log($(this));
-        console.log($(this).parent("tr"));
-      //  var aa=$(this).attr("data-src");
-      //  console.log("值=="+aa);
-    })
-      function editContract(){
-        console.log($(this));
-        console.log($(this).parent("tr"));
-        $.ajax({
-          type:"GET",		
-          url:"../Contract/edit?id=",			
-          dataType:"json",
-          async:false,
-        
-      });
-      }
+
       var newsLis = $("#contractList tbody").children();
    // total news count
    var count = newsLis.length;

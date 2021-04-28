@@ -85,6 +85,10 @@ public class StudentServiceImpl implements StudentService{
 		return s;
 		// TODO Auto-generated method stub
 	}
-
+	
+	public Student login(Student student){
+		return studentMapper.login(student);
+	}
+	
 
 }

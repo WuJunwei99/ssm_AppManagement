@@ -93,6 +93,24 @@ public class StudentController {
     }
     
     /**
+     * 请求路径：/login
+     * 方法返回值：{status：200}
+     * 参数：Student对象
+     */
+    @RequestMapping("login")
+    @ResponseBody
+    public String login(@Valid Student student, BindingResult result) throws Exception {
+		String viewName="redirect:/employee/findAll.do";
+		try {
+			this.studentService.login(student);
+		} catch (Exception e) {
+			e.printStackTrace();
+			viewName="forward:/login.jsp";
+		}
+		return viewName;
+    }
+    
+    /**
      * 请求路径：/delete
      * 方法返回值：{status：200}
      * 参数：以逗号分割的ids
@@ -123,7 +141,7 @@ public class StudentController {
     public Map<String, Object> checkPassword(Student Student) throws Exception {
         
         Map<String, Object> map = new HashMap<String, Object>();
-        
+
         // 调用StudentService的新增方法
         System.out.println(Student);
 	   	Student Student1 = this.studentService.selectStudentByName(Student.getName());

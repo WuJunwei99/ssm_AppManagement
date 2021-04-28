@@ -50,7 +50,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2 id="welcomeName">John Doe</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -313,8 +313,13 @@
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <script src="../vendors/jquery/dist/jquery.params.js"></script>
     <script type="text/javascript">
       $(function (){		
+        var studentNum=getCookie("studentNum");
+        var name=unescape(getCookie("name"));
+        $("#welcomeName").html(name);
+        console.log(name);
         $.ajax({
           type:"GET",		
           url:"../Students/list",			
@@ -352,7 +357,20 @@
         });
         
       });
-
+//循环得到相应的值
+function getCookie(cname)
+        {
+            var ss = document.cookie;
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++)
+            {
+                var c = ca[i].trim();
+                if (c.indexOf(name)==0)
+                    return c.substring(name.length,c.length);
+            }
+            return "";
+        }
       // li jquery object array
 var newsLis = $("#studentList tbody").children();
 // total news count
