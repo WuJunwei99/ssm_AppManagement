@@ -1,0 +1,5 @@
+/target/
+/bin/
+/src/main/webapp/build/
+/src/main/webapp/vendors/
+/src/main/webapp/WEB-INF/views/js/
